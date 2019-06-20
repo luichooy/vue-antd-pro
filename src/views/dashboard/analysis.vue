@@ -1,6 +1,6 @@
 <template>
   <div class="statistic-wrapper">
-    123
+    <a-card :bordered="false">123</a-card>
     <!-- <div style="text-align: right">
       <a-date-picker v-model="date" :disabledDate="currentDate => currentDate > moment()"></a-date-picker>
     </div>
