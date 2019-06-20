@@ -1,0 +1,148 @@
+@each $i, $size in $spaces {
+  .m-#{$i} {
+    margin: $size;
+  }
+
+  .p-#{$i} {
+    padding: $size;
+  }
+
+  .ml-#{$i} {
+    margin-left: $size;
+  }
+
+  .mr-#{$i} {
+    margin-right: $size;
+  }
+
+  .mt-#{$i} {
+    margin-top: $size;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: $size;
+  }
+
+  .pl-#{$i} {
+    padding-left: $size;
+  }
+
+  .pr-#{$i} {
+    padding-right: $size;
+  }
+
+  .pt-#{$i} {
+    padding-top: $size;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: $size;
+  }
+}
+
+.text-success {
+  color: #00bcd4 !important;
+}
+
+.text-danger {
+  color: #d9534f !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.border-none {
+  border: none !important;
+}
+
+.page-container__stretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.operate-wrapper {
+  margin: 16px 0;
+
+  .btn-item {
+    margin: 0 8px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.table-search-wrapper {
+  .ant-form-inline {
+    .ant-form-item {
+      display: flex;
+      margin-bottom: 24px;
+      margin-right: 0;
+
+      .ant-form-item-control-wrapper {
+        flex: 1 1;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      > .ant-form-item-label {
+        line-height: 32px;
+        padding-right: 8px;
+        width: auto;
+      }
+      .ant-form-item-control {
+        height: 32px;
+        line-height: 32px;
+      }
+    }
+  }
+
+  .search-buttons {
+    display: block;
+    margin-bottom: 24px;
+    white-space: nowrap;
+  }
+}
+
+.echarts {
+  width: 100%;
+  height: 100%;
+}
+
+// 手机端 左侧菜单drawer样式
+.ant-drawer.drawer-sider {
+  .ant-drawer-body {
+    padding: 0;
+  }
+}
+
+// layoutHeader dropdown下拉菜单样式
+.user-menu .user {
+  cursor: default;
+  user-select: none;
+  &:hover {
+    background-color: #fff;
+  }
+}
+
+// 表格内容单元格允许单词换行，防止内容过多将单元格撑大，
+// 运单上传管理  备注
+.ant-table td {
+  word-break: break-all;
+}
