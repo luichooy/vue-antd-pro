@@ -1,9 +1,36 @@
 {
   "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
   ],
   "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "id": "V20190324121645AP",
+      "username": "常山赵子龙",
+      "contacts": "赵子龙",
+      "contactsEmail": "zhaozilong@qq.com",
+      "provinceName": "河北省",
+      "cityName": "石家庄市",
+      "areaName": "",
+      "address": "",
+      "roleId": "",
+      "roleName": "管理员",
+      "status": 1,
+      "createTime": "2019-03-24 15:16:45",
+      "updateTime": "2019-03-24 15:16:45"
+    }
+  ]
 }

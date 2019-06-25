@@ -5,11 +5,11 @@ export default {
       formFold: true,
       formItemLayout: {
         labelCol: {
-          md: { span: 8 },
+          md: { span: 6 },
           sm: { span: 4 }
         },
         wrapperCol: {
-          md: { span: 16 },
+          md: { span: 18 },
           sm: { span: 20 }
         }
       }

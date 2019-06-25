@@ -165,6 +165,14 @@ caseless@~0.12.0:
   resolved "https://registry.npm.taobao.org/caseless/download/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
+casual@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.npm.taobao.org/casual/download/casual-1.6.2.tgz#f56b87113ae99a6bba45e04bdfa068ca443f9e85"
+  integrity sha1-9WuHETrpmmu6ReBL36BoykQ/noU=
+  dependencies:
+    mersenne-twister "^1.0.1"
+    moment "^2.15.2"
+
 chalk@^2.0.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.npm.taobao.org/chalk/download/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -994,6 +1002,11 @@ merge-descriptors@1.0.1:
   resolved "https://registry.npm.taobao.org/merge-descriptors/download/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
   integrity sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=
 
+mersenne-twister@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.npm.taobao.org/mersenne-twister/download/mersenne-twister-1.1.0.tgz#f916618ee43d7179efcf641bec4531eb9670978a"
+  integrity sha1-+RZhjuQ9cXnvz2Qb7EUx65Zwl4o=
+
 method-override@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/method-override/download/method-override-3.0.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmethod-override%2Fdownload%2Fmethod-override-3.0.0.tgz#6ab0d5d574e3208f15b0c9cf45ab52000468d7a2"
@@ -1040,6 +1053,11 @@ minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/minimist/download/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
   integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
+
+moment@^2.15.2:
+  version "2.24.0"
+  resolved "https://registry.npm.taobao.org/moment/download/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha1-DQVdU/UFKqZTyfbraLtdEr9cK1s=
 
 morgan@^1.9.1:
   version "1.9.1"

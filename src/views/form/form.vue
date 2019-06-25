@@ -33,14 +33,6 @@
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
-                <a-form-item label="业务类型" v-bind="formItemLayout">
-                  <a-select v-model="form.impType" placeholder="请选择" default-value="0">
-                    <a-select-option value="1210">保税进口</a-select-option>
-                    <a-select-option value="9610">直邮进口</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
                 <a-form-item label="更新时间" v-bind="formItemLayout">
                   <a-range-picker
                     v-model="rangeDate"
@@ -70,33 +62,32 @@
       </div>
       
       <div class="operate-wrapper">
-        <a-button :disabled="isDisabled" @click="onRePush" class="btn-item" type="primary">手动重推</a-button>
+        <a-button @click="onRePush" class="btn-item" type="primary">新增</a-button>
+        <a-button :disabled="isDisabled" @click="onDelete" class="btn-item" type="danger">删除</a-button>
       </div>
       
       <a-table
         :columns="columns"
         :dataSource="rows"
         :rowSelection="rowSelection"
-        rowKey="logisticsNo"
+        rowKey="id"
         :pagination="pagination"
         :loading="tableLoading"
         @change="handleTableChange"
-        :scroll="{ x: true }"
+        :scroll="{ x: 1500 }"
       >
         <span slot="serial" slot-scope="text, record, index">{{ serial + index + 1 }}</span>
-        <a
-          slot="logisticsNo"
-          slot-scope="logisticsNo"
-          @click="showModal('logistics', logisticsNo)"
-          href="javascript:;"
-        >{{ logisticsNo }}</a>
-        <span slot="impType" slot-scope="type">{{ type | businessTypeFilter }}</span>
-        <a
-          slot="declareStatus"
-          slot-scope="status, record"
-          @click="showModal('status', record.logisticsNo)"
-          href="javascript:;"
-        >{{ status }}</a>
+        
+        <span slot="contacts" slot-scope="record">{{  `${record.contactsFirstName} ${record.contactsLastName}` }}</span>
+        
+        <span slot="address" slot-scope="record">
+          {{ record.address }}
+        </span>
+        
+        <span slot="status" slot-scope="status">{{ status === 1 ? '启用' : '禁用' }}</span>
+  
+        <span slot="updateTime" slot-scope="updateTime">{{ new Date(updateTime) | formatDate('yyyy-MM-dd hh:mm:ss') }}</span>
+      
       </a-table>
     </a-card>
     
@@ -118,6 +109,7 @@
 
 <script>
 import { queryFormMixin, tableMixin, rangePickerMixin } from '@/mixins'
+import { getUsers } from '@/api/form'
 // import LogisticsModal from './components/LogisticsModal'
 // import ReceiptModal from './components/ReceiptModal'
 // import { getApplies, getPorts, getDeclare, rePush } from '@/api/waybill'
@@ -130,6 +122,11 @@ const columns = [
     align: 'center'
   },
   {
+    title: '用户编号',
+    dataIndex: 'id',
+    align: 'center'
+  },
+  {
     title: '登录名',
     dataIndex: 'username',
     scopedSlots: { customRender: 'logisticsNo' },
@@ -137,17 +134,18 @@ const columns = [
   },
   {
     title: '联系人',
-    dataIndex: 'contacts',
-    align: 'center'
-  },
-  {
-    title: '联系人电话',
-    dataIndex: 'contactsMobile',
+    scopedSlots: { customRender: 'contacts' },
     align: 'center'
   },
   {
     title: '联系人邮箱',
     dataIndex: 'contactsEmail',
+    align: 'center'
+  },
+  {
+    title: '地址',
+    scopedSlots: { customRender: 'address' },
+    width: 200,
     align: 'center'
   },
   {
@@ -157,13 +155,15 @@ const columns = [
   },
   {
     title: '状态',
-    dataIndex: 'declareStatus',
-    scopedSlots: { customRender: 'declareStatus' },
+    dataIndex: 'status',
+    scopedSlots: { customRender: 'status' },
     align: 'center'
   },
   {
     title: '更新时间',
     dataIndex: 'updateTime',
+    scopedSlots: { customRender: 'updateTime' },
+    width: 160,
     align: 'center'
   }
 ]
@@ -213,45 +213,23 @@ export default {
     async search () {
       this.tableLoading = true
       const { current, pageSize } = this.pagination
-      const res = await getApplies({
+      this.rows = await getUsers({
         ...this.form,
         current,
         pageSize
       })
-      if (res.status === 200) {
-        this.rows = res.data.result
-        this.pagination.total = res.data.totalCount
-      } else {
-        this.$message.error(res.message)
-      }
       this.tableLoading = false
     },
     handleSearch () {
       this.pagination.current = 1
       this.search()
     },
-    async onRePush () {
+    async onDelete () {
       const res = await rePush({ list: this.selectedRowKeys })
       if (res.status === 200) {
         this.search()
         this.selectedRowKeys = []
         this.$message.success('重推成功')
-      } else {
-        this.$message.error(res.message)
-      }
-    },
-    async getDeclareOptions () {
-      const res = await getDeclare()
-      if (res.status === 200) {
-        this.declareStrategy = res.data
-      } else {
-        this.$message.error(res.message)
-      }
-    },
-    async getPortOptions () {
-      const res = await getPorts()
-      if (res.status === 200) {
-        this.portOptions = res.data
       } else {
         this.$message.error(res.message)
       }
@@ -293,7 +271,7 @@ export default {
     
     // this.getDeclareOptions()
     // this.getPortOptions()
-    // this.search()
+    this.search()
   }
 }
 </script>

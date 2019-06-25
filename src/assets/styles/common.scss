@@ -89,33 +89,31 @@
 }
 
 .table-search-wrapper {
-  .ant-form-inline {
-    .ant-form-item {
-      display: flex;
-      margin-bottom: 24px;
-      margin-right: 0;
+  .ant-form-item {
+    display: flex;
+    margin-bottom: 24px;
+    margin-right: 0;
 
-      .ant-form-item-control-wrapper {
-        flex: 1 1;
-        display: inline-block;
-        vertical-align: middle;
-      }
+    .ant-form-item-control-wrapper {
+      flex: 1 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-      > .ant-form-item-label {
-        line-height: 32px;
-        padding-right: 8px;
-        width: auto;
-      }
-      .ant-form-item-control {
-        height: 32px;
-        line-height: 32px;
-      }
+    .ant-form-item-label {
+      line-height: 32px;
+      padding-right: 8px;
+    }
+    .ant-form-item-control {
+      height: 32px;
+      line-height: 32px;
     }
   }
 
   .search-buttons {
     display: block;
     margin-bottom: 24px;
+    margin-left: 24px;
     white-space: nowrap;
   }
 }
@@ -142,7 +140,6 @@
 }
 
 // 表格内容单元格允许单词换行，防止内容过多将单元格撑大，
-// 运单上传管理  备注
 .ant-table td {
   word-break: break-all;
 }

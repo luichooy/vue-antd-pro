@@ -31,7 +31,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://192.168.207.166:8081', // 后端测试服务器
+        target: 'http://localhost:3000', // 后端服务器
         ws: false,
         changeOrigin: true,
         pathRewrite: {
