@@ -23,15 +23,10 @@ casual.define('user', function (role) {
   return {
     id: casual.card_number(),
     username: casual.username,
-    contactsFirstName: casual.first_name,
-    contactsLastName: casual.last_name,
+    contacts: casual.full_name,
     contactsEmail: casual.email,
-    provinceName: casual.state,
-    cityName: casual.city,
-    areaName: casual.word,
     address: casual.address,
     roleId: role.value,
-    roleName: role.label,
     status: casual.integer(0, 1),
     createTime: casual.unix_time,
     updateTime: casual.unix_time
@@ -40,7 +35,8 @@ casual.define('user', function (role) {
 
 module.exports = () => {
   const data = {
-    users: []
+    users: [],
+    roles: roleMap
   }
   
   for (let i = 0; i < 54; i++) {

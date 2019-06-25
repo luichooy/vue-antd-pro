@@ -62,8 +62,7 @@
       </div>
       
       <div class="operate-wrapper">
-        <a-button @click="onRePush" class="btn-item" type="primary">新增</a-button>
-        <a-button :disabled="isDisabled" @click="onDelete" class="btn-item" type="danger">删除</a-button>
+        <a-button @click="onCreate" class="btn-item" type="primary">新增</a-button>
       </div>
       
       <a-table
@@ -78,11 +77,7 @@
       >
         <span slot="serial" slot-scope="text, record, index">{{ serial + index + 1 }}</span>
         
-        <span slot="contacts" slot-scope="record">{{  `${record.contactsFirstName} ${record.contactsLastName}` }}</span>
-        
-        <span slot="address" slot-scope="record">
-          {{ record.address }}
-        </span>
+        <span slot="role" slot-scope="roleId">{{ roleId | roleFilter(roleOptions) }}</span>
         
         <span slot="status" slot-scope="status">{{ status === 1 ? '启用' : '禁用' }}</span>
         
@@ -91,7 +86,7 @@
         </span>
         
         <div slot="actions" slot-scope="record">
-          <a href="javascript:0;">编辑</a>
+          <a @click="onEdit(record)" href="javascript:0;">编辑</a>
           <a-divider type="vertical" />
           <a @click="onDelete(record.id)" href="javascript:0;">删除</a>
         </div>
@@ -100,13 +95,14 @@
     </a-card>
     
     <!--新增/修改用户-->
-    <account-modal :visible="visible" :account="currentAccount" @close="handleModalClose" />
+    <account-modal :visible="visible" :account="currentAccount" @close="onModalClose" />
   </div>
 </template>
 
 <script>
 import { queryFormMixin, tableMixin, rangePickerMixin } from '@/mixins'
-import { getUsers, deleteAccount } from '@/api/form'
+import AccountModal from './components/AccountModal'
+import { getUsers, deleteAccount, getRoles } from '@/api/form'
 
 const columns = [
   {
@@ -124,12 +120,11 @@ const columns = [
   {
     title: '登录名',
     dataIndex: 'username',
-    scopedSlots: { customRender: 'logisticsNo' },
     align: 'center'
   },
   {
     title: '联系人',
-    scopedSlots: { customRender: 'contacts' },
+    dataIndex: 'contacts',
     align: 'center'
   },
   {
@@ -139,13 +134,14 @@ const columns = [
   },
   {
     title: '地址',
-    scopedSlots: { customRender: 'address' },
+    dataIndex: 'address',
     width: 200,
     align: 'center'
   },
   {
     title: '角色',
-    dataIndex: 'roleName',
+    dataIndex: 'roleId',
+    scopedSlots: { customRender: 'role' },
     align: 'center'
   },
   {
@@ -172,7 +168,18 @@ const columns = [
 
 export default {
   mixins: [queryFormMixin, tableMixin, rangePickerMixin],
-  // components: { LogisticsModal, ReceiptModal },
+  components: { AccountModal },
+  filters: {
+    roleFilter (roleId, roleOptions) {
+      let role = null
+      roleOptions.forEach(item => {
+        if (item.value === roleId) {
+          role = item
+        }
+      })
+      return role.label
+    }
+  },
   data () {
     return {
       // 查询条件
@@ -223,6 +230,13 @@ export default {
       this.pagination.current = 1
       this.search()
     },
+    onCreate () {
+      this.visible = true
+    },
+    onEdit (row) {
+      this.currentAccount = row
+      this.visible = true
+    },
     async onDelete (id) {
       const self = this
       this.$confirm({
@@ -240,32 +254,23 @@ export default {
         }
       })
     },
-    handleModalClose () {
-      // 关闭 modal 时清空accountId，防止 新增/修改 混乱
+    async queryRoles () {
+      const res = await getRoles()
+      this.roleOptions = res
+    },
+    onModalClose (isRefresh) {
+      // 如果子组件要求父组件刷新
+      if (isRefresh) {
+        this.search()
+      }
+      // 关闭 modal时清空currentAccount，防止 新增/修改 混乱
       this.currentAccount = null
       this.visible = false
     }
   },
   created () {
     this.columns = columns
-    this.roleOptions = [
-      {
-        label: '超级管理员',
-        value: 1
-      },
-      {
-        label: '管理员',
-        value: 2
-      },
-      {
-        label: '操作员A',
-        value: 3
-      },
-      {
-        label: '操作员B',
-        value: 4
-      }
-    ]
+    this.queryRoles()
     this.search()
   }
 }
