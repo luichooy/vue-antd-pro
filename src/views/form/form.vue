@@ -85,41 +85,36 @@
         </span>
         
         <span slot="status" slot-scope="status">{{ status === 1 ? '启用' : '禁用' }}</span>
-  
-        <span slot="updateTime" slot-scope="updateTime">{{ new Date(updateTime) | formatDate('yyyy-MM-dd hh:mm:ss') }}</span>
+        
+        <span slot="updateTime" slot-scope="updateTime">
+          {{ new Date(updateTime) | formatDate('yyyy-MM-dd hh:mm:ss') }}
+        </span>
+        
+        <div slot="actions" slot-scope="record">
+          <a href="javascript:0;">编辑</a>
+          <a-divider type="vertical" />
+          <a @click="onDelete(record.id)" href="javascript:0;">删除</a>
+        </div>
       
       </a-table>
     </a-card>
     
-    <!--运单详情-->
-    <!--<logistics-modal-->
-    <!--:visible="logisticsModalVisible"-->
-    <!--:id="currentKey"-->
-    <!--@close="logisticsModalVisible = false"-->
-    <!--/>-->
-    
-    <!--申请状态详情-->
-    <!--<receipt-modal-->
-    <!--:visible="receiptModalVisible"-->
-    <!--:id="currentKey"-->
-    <!--@close="receiptModalVisible = false"-->
-    <!--/>-->
+    <!--新增/修改用户-->
+    <account-modal :visible="visible" :account="currentAccount" @close="handleModalClose" />
   </div>
 </template>
 
 <script>
 import { queryFormMixin, tableMixin, rangePickerMixin } from '@/mixins'
-import { getUsers } from '@/api/form'
-// import LogisticsModal from './components/LogisticsModal'
-// import ReceiptModal from './components/ReceiptModal'
-// import { getApplies, getPorts, getDeclare, rePush } from '@/api/waybill'
-// import { businessTypeFilter } from './utils'
+import { getUsers, deleteAccount } from '@/api/form'
 
 const columns = [
   {
     title: '#',
     scopedSlots: { customRender: 'serial' },
-    align: 'center'
+    width: 50,
+    align: 'center',
+    fixed: 'left'
   },
   {
     title: '用户编号',
@@ -165,29 +160,31 @@ const columns = [
     scopedSlots: { customRender: 'updateTime' },
     width: 160,
     align: 'center'
+  },
+  {
+    title: '操作',
+    scopedSlots: { customRender: 'actions' },
+    width: 120,
+    align: 'center',
+    fixed: 'right'
   }
 ]
 
 export default {
   mixins: [queryFormMixin, tableMixin, rangePickerMixin],
   // components: { LogisticsModal, ReceiptModal },
-  // filters: { businessTypeFilter },
   data () {
     return {
       // 查询条件
       form: {},
       // 当前选中行
       selectedRowKeys: [],
-      // 申报状态备选项
-      declareStrategy: [],
+      
       // 角色下拉框 备选项
       roleOptions: [],
-      // 当前操作行的key
-      currentKey: '',
-      // 运单详情
-      logisticsModalVisible: false,
-      // 申请状态详情
-      receiptModalVisible: false
+      
+      visible: false,
+      currentAccount: null
     }
   },
   computed: {
@@ -200,7 +197,7 @@ export default {
         },
         getCheckboxProps: record => ({
           props: {
-            disabled: record.pushStatus === 1 || record.uploadStatus === 0
+            disabled: record.status === 1
           }
         })
       }
@@ -213,35 +210,40 @@ export default {
     async search () {
       this.tableLoading = true
       const { current, pageSize } = this.pagination
-      this.rows = await getUsers({
+      const res = await getUsers({
         ...this.form,
         current,
         pageSize
       })
+      this.rows = res
+      this.pagination.total = res.length
       this.tableLoading = false
     },
     handleSearch () {
       this.pagination.current = 1
       this.search()
     },
-    async onDelete () {
-      const res = await rePush({ list: this.selectedRowKeys })
-      if (res.status === 200) {
-        this.search()
-        this.selectedRowKeys = []
-        this.$message.success('重推成功')
-      } else {
-        this.$message.error(res.message)
-      }
+    async onDelete (id) {
+      const self = this
+      this.$confirm({
+        title: '删除',
+        content: `确定要删除选该用户吗？`,
+        okText: '删除',
+        okType: 'danger',
+        async onOk () {
+          await deleteAccount(id)
+          self.$message.success('删除成功')
+          self.search()
+        },
+        onCancel () {
+          self.$message.warning('取消删除')
+        }
+      })
     },
-    showModal (flag, id) {
-      this.currentKey = id
-      
-      if (flag === 'logistics') {
-        this.logisticsModalVisible = true
-      } else {
-        this.receiptModalVisible = true
-      }
+    handleModalClose () {
+      // 关闭 modal 时清空accountId，防止 新增/修改 混乱
+      this.currentAccount = null
+      this.visible = false
     }
   },
   created () {
@@ -249,28 +251,21 @@ export default {
     this.roleOptions = [
       {
         label: '超级管理员',
-        value: 'superAdmin'
+        value: 1
       },
       {
         label: '管理员',
-        value: 'admin'
+        value: 2
       },
       {
-        label: '助手A',
-        value: 'assistantA'
+        label: '操作员A',
+        value: 3
       },
       {
-        label: '助手B',
-        value: 'assistantB'
-      },
-      {
-        label: '操作员',
-        value: 'operator'
+        label: '操作员B',
+        value: 4
       }
     ]
-    
-    // this.getDeclareOptions()
-    // this.getPortOptions()
     this.search()
   }
 }
