@@ -30,33 +30,15 @@ export const appRoutes = [
     redirect: '/dashboard/analysis',
     component: AppLayout,
     children: [
-      // {
-      //   path: 'form',
-      //   name: 'waybill',
-      //   meta: {
-      //     title: '申报管理',
-      //     icon: 'project'
-      //   },
-      //   component: ViewLayout,
-      //   children: [
-      //     {
-      //       path: 'upload',
-      //       name: 'waybill_upload',
-      //       meta: {
-      //         title: '运单上传管理'
-      //       },
-      //       component: () => import('@/views/waybill/upload')
-      //     },
-      //     {
-      //       path: 'apply',
-      //       name: 'waybill_apply',
-      //       meta: {
-      //         title: '运单申报管理'
-      //       },
-      //       component: () => import('@/views/waybill/apply')
-      //     }
-      //   ]
-      // },
+      {
+        path: 'form',
+        name: 'form',
+        meta: {
+          title: '表单页',
+          icon: 'project'
+        },
+        component: () => import(/* webpackChunkName: "form" */ '@/views/form/form')
+      },
       {
         path: 'dashboard',
         name: 'dashboard',
@@ -72,10 +54,7 @@ export const appRoutes = [
             meta: {
               title: '分析页'
             },
-            component: () =>
-              import(
-                /* webpackChunkName: "analysis" */ '@/views/dashboard/analysis'
-              )
+            component: () => import(/* webpackChunkName: "analysis" */ '@/views/dashboard/analysis')
           },
           {
             path: 'monitor',
@@ -83,10 +62,7 @@ export const appRoutes = [
             meta: {
               title: '监控页'
             },
-            component: () =>
-              import(
-                /* webpackChunkName: "monitor" */ '@/views/dashboard/monitor'
-              )
+            component: () => import(/* webpackChunkName: "monitor" */ '@/views/dashboard/monitor')
           }
         ]
       }

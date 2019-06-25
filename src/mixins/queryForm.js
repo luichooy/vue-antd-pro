@@ -2,7 +2,17 @@ export default {
   data () {
     return {
       // 控制查询条件折叠
-      formFold: true
+      formFold: true,
+      formItemLayout: {
+        labelCol: {
+          md: { span: 8 },
+          sm: { span: 4 }
+        },
+        wrapperCol: {
+          md: { span: 16 },
+          sm: { span: 20 }
+        }
+      }
     }
   },
   methods: {
