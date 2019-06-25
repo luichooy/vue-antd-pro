@@ -65,6 +65,8 @@ export default {
       margin-left: 12px;
       margin-right: 16px;
       font-size: 18px;
+      font-weight: bolder;
+      font-family: "Ink Free";
       color: #fff;
     }
   }

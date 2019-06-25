@@ -3,7 +3,9 @@
     <a-card style="width: 460px;" :body-style="{padding: '84px 64px'}">
       <div class="logo-wrapper">
         <img src="../../assets/images/logo.png" class="logo" alt="背景图">
+        <span class="title">VUE-ANTD-PRO</span>
       </div>
+      
       <a-form :form="form" class="login-form">
         <a-form-item>
           <a-input
@@ -92,13 +94,14 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Logo from '@/components/Logo'
 import ValidateCode from '@/components/ValidateCode'
 import LayoutFooter from '@/components/Layout/App/LayoutFooter'
 import { encryptpwd } from '@/utils'
 import { timeFix } from '@/utils/time'
 
 export default {
-  components: { ValidateCode, LayoutFooter },
+  components: { Logo, ValidateCode, LayoutFooter },
   data () {
     return {
       form: this.$form.createForm(this),
@@ -172,7 +175,14 @@ export default {
       
       .logo {
         display: inline-block;
-        height: 113px;
+        width: 80px;
+        margin-right: 16px;
+      }
+      
+      .title{
+        font-size: 32px;
+        font-weight: bolder;
+        font-family: "Ink Free";
       }
     }
     
