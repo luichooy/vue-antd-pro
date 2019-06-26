@@ -31,13 +31,13 @@ export const appRoutes = [
     component: AppLayout,
     children: [
       {
-        path: 'form',
-        name: 'form',
+        path: 'table',
+        name: 'table',
         meta: {
-          title: '表单页',
-          icon: 'project'
+          title: '表格页',
+          icon: 'table'
         },
-        component: () => import(/* webpackChunkName: "form" */ '@/views/form/form')
+        component: () => import(/* webpackChunkName: "table" */ '@/views/table/table')
       },
       {
         path: 'dashboard',
@@ -50,7 +50,7 @@ export const appRoutes = [
         children: [
           {
             path: 'analysis',
-            name: 'statistic_analysis',
+            name: 'dashboard_analysis',
             meta: {
               title: '分析页'
             },
@@ -58,7 +58,7 @@ export const appRoutes = [
           },
           {
             path: 'monitor',
-            name: 'statistic_monitor',
+            name: 'dashboard_monitor',
             meta: {
               title: '监控页'
             },

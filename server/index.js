@@ -22,10 +22,33 @@ const roleMap = [
 const menus = [
   {
     id: '1',
-    icon: 'form',
-    path: '/form',
-    name: 'form',
+    icon: 'table',
+    path: '/table',
+    name: 'table',
     title: '表单页'
+  },
+  {
+    id: '2',
+    icon: 'dashboard',
+    path: '/dashboard',
+    name: 'dashboard',
+    title: 'Dashboard',
+    children: [
+      {
+        id: '21',
+        icon: '',
+        path: '/dashboard/analysis',
+        name: 'analysis',
+        title: '分析页'
+      },
+      {
+        id: '22',
+        icon: '',
+        path: '/dashboard/monitor',
+        name: 'monitor',
+        title: '监控页'
+      }
+    ]
   }
 ]
 

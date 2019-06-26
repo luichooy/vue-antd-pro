@@ -7,16 +7,16 @@
 </template>
 
 <script>
-  import Layout from './App/Layout';
-  import ViewLayout from './ViewLayout';
-  
-  export default {
-    name: 'AppLayout',
-    components: {
-      Layout,
-      ViewLayout
-    }
-  };
+import Layout from './App/Layout'
+import ViewLayout from './ViewLayout'
+
+export default {
+  name: 'AppLayout',
+  components: {
+    Layout,
+    ViewLayout
+  }
+}
 </script>
 
 <style lang="scss" scoped>
