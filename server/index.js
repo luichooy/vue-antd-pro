@@ -19,6 +19,16 @@ const roleMap = [
   }
 ]
 
+const menus = [
+  {
+    id: '1',
+    icon: 'form',
+    path: '/form',
+    name: 'form',
+    title: '表单页'
+  }
+]
+
 casual.define('user', function (role) {
   return {
     id: casual.card_number(),
@@ -36,7 +46,16 @@ casual.define('user', function (role) {
 module.exports = () => {
   const data = {
     users: [],
-    roles: roleMap
+    roles: roleMap,
+    login: {
+      status: 200,
+      data: {
+        token: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwMTU2MjA5MyIsImNyZWF0ZWQiOjE1NjE1MTY3NjU5MzMsImNvbXBhbnlOYW1lIjoiQee9kSIsInRlbmFudElkIjoxLCJ1c2VyVHlwZSI6InN0YWZmIiwiaWQiOjEsImV4cCI6MTU2MTUyMDM2NX0.j8sWbwXzHnSgvz7em2DjAhNDU5xaxysEFES8SlyJZnj0lVgXKax4tEDNGawZivW6Ip1734Rnvb6z2te8jGmIWQ"',
+        menus: menus,
+        user: casual.user(casual.random_element(roleMap))
+      },
+      message: 'success'
+    }
   }
   
   for (let i = 0; i < 54; i++) {

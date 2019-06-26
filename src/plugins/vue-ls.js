@@ -17,5 +17,5 @@ const SessionStorage = {
   }
 }
 
-Vue.use(Storage, { namespace: 'YTO__' })
-Vue.use(SessionStorage, { namespace: 'YTO__' })
+Vue.use(Storage, { namespace: 'VAPRO__' })
+Vue.use(SessionStorage, { namespace: 'VAPRO__' })
