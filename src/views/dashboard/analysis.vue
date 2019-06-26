@@ -1,72 +1,102 @@
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <div class="statistic-wrapper">
-    <a-card :bordered="false">123</a-card>
-    <!-- <div style="text-align: right">
-      <a-date-picker v-model="date" :disabledDate="currentDate => currentDate > moment()"></a-date-picker>
-    </div>
-
-    <overview :query="query"></overview>
-
-    <a-row :gutter="12">
-      <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24" style="margin-top: 16px;">
-        <line-real :query="query"></line-real>
+    <a-row :gutter="16">
+      <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
+        <chart-card title="总销售额" total="¥126,560">
+          <template v-slot:action>
+            <a-tooltip placement="top" title="指标说明">
+              <a-icon type="info-circle" />
+            </a-tooltip>
+          </template>
+          <div>
+            <Trend label="周同比" value="12" type="up" style="margin-right: 16px;"></Trend>
+            <Trend label="日同比" value="11" type="down"></Trend>
+          </div>
+          <template v-slot:footer>
+            <span>日销售额</span>
+            <span class="footer-number">￥12,423</span>
+          </template>
+        </chart-card>
       </a-col>
-      <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24" style="margin-top: 16px;">
-        <recent-seven-days :query="query"></recent-seven-days>
+      
+      <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
+        <chart-card title="访问量" total="8,846">
+          <template v-slot:action>
+            <a-tooltip placement="top" title="指标说明">
+              <a-icon type="info-circle" />
+            </a-tooltip>
+          </template>
+          <div>
+            <Trend label="周同比" value="12" type="up" style="margin-right: 16px;"></Trend>
+            <Trend label="日同比" value="11" type="down"></Trend>
+          </div>
+          <template v-slot:footer>
+            <span>日访问量</span>
+            <span class="footer-number">1,234</span>
+          </template>
+        </chart-card>
+      </a-col>
+      
+      <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
+        <chart-card title="支付笔数" total="6,560">
+          <template v-slot:action>
+            <a-tooltip placement="top" title="指标说明">
+              <a-icon type="info-circle" />
+            </a-tooltip>
+          </template>
+          <div>
+            <Trend label="周同比" value="12" type="down" style="margin-right: 16px;"></Trend>
+            <Trend label="日同比" value="11" type="up"></Trend>
+          </div>
+          <template v-slot:footer>
+            <span>转化率</span>
+            <span class="footer-number">60%</span>
+          </template>
+        </chart-card>
+      </a-col>
+      
+      <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
+        <chart-card title="运营活动效果" total="78%">
+          <template v-slot:action>
+            <a-tooltip placement="top" title="指标说明">
+              <a-icon type="info-circle" />
+            </a-tooltip>
+          </template>
+          <div>
+            <Trend label="周同比" value="12" type="down" style="margin-right: 16px;"></Trend>
+            <Trend label="日同比" value="11" type="up"></Trend>
+          </div>
+          <template v-slot:footer>
+            <Trend label="周同比" value="12" type="up" style="margin-right: 16px;"></Trend>
+            <Trend label="日同比" value="11" type="down"></Trend>
+          </template>
+        </chart-card>
       </a-col>
     </a-row>
-
-    <Map :query="query"></Map>
-
-    <Pie :query="query"></Pie>
-
-    <Table :query="query"></Table>-->
+  
   </div>
 </template>
 
 <script>
-import moment from 'moment'
-// import Overview from './components/Overview';
-// import LineReal from './components/LineReal';
-// import RecentSevenDays from './components/RecentSevenDays';
-// import Map from './components/Map/';
-// import Pie from './components/Pie';
-// import Table from './components/Table';
+import ChartCard from '@/components/Chart/ChartCard'
+import Trend from '@/components/Trend'
 
 export default {
-  components: {
-    // Overview,
-    // LineReal,
-    // RecentSevenDays,
-    // Map,
-    // Pie,
-    // Table
-  },
+  components: { ChartCard, Trend },
   data () {
-    return {
-      date: moment()
-    }
+    return {}
   },
-  computed: {
-    query () {
-      return { date: this.date.format('YYYY-MM-DD') }
-    }
-  },
-  methods: { moment }
+  
+  methods: {}
 }
 </script>
 
 <style lang="scss" scoped>
   .statistic-wrapper {
-    .total {
-      line-height: 38px;
-      height: 38px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      word-break: break-all;
-      white-space: nowrap;
-      color: #000;
-      font-size: 30px;
+    
+    .footer-number {
+      margin-left: 8px;
+      color: rgba(0, 0, 0, 0.85);
     }
   }
 </style>
