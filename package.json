@@ -16,6 +16,7 @@
     "enquire.js": "^2.1.6",
     "js-base64": "^2.5.1",
     "nprogress": "^0.2.0",
+    "viser-vue": "^2.4.6",
     "vue": "^2.6.10",
     "vue-ls": "^3.2.1",
     "vue-router": "^3.0.3",
