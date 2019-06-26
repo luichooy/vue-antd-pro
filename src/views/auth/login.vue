@@ -94,14 +94,13 @@
 
 <script>
 import { mapActions } from 'vuex'
-import Logo from '@/components/Logo'
 import ValidateCode from '@/components/ValidateCode'
 import LayoutFooter from '@/components/Layout/App/LayoutFooter'
 import { encryptpwd } from '@/utils'
 import { timeFix } from '@/utils/time'
 
 export default {
-  components: { Logo, ValidateCode, LayoutFooter },
+  components: { ValidateCode, LayoutFooter },
   data () {
     return {
       form: this.$form.createForm(this),
@@ -179,7 +178,7 @@ export default {
         margin-right: 16px;
       }
       
-      .title{
+      .title {
         font-size: 32px;
         font-weight: bolder;
         font-family: "Ink Free";
