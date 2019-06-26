@@ -5,9 +5,9 @@ export function login (params) {
 }
 
 export function logout () {
-  return request.get('/auth/logout')
+  return request.get('/logout')
 }
 
 export function modifyPassword (params) {
-  return request.post('/user/modifyPassword', params)
+  return request.post('/modifyPassword', params)
 }

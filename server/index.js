@@ -55,6 +55,10 @@ module.exports = () => {
         user: casual.user(casual.random_element(roleMap))
       },
       message: 'success'
+    },
+    logout: {
+      status: 200,
+      message: 'success'
     }
   }
   
