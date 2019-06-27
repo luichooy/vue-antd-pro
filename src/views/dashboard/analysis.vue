@@ -27,8 +27,7 @@
             </a-tooltip>
           </template>
           <div>
-            <Trend label="周同比" value="12" type="up" style="margin-right: 16px;"></Trend>
-            <Trend label="日同比" value="11" type="down"></Trend>
+            <mini-area />
           </div>
           <template v-slot:footer>
             <span>日访问量</span>
@@ -44,10 +43,7 @@
               <a-icon type="info-circle" />
             </a-tooltip>
           </template>
-          <div>
-            <Trend label="周同比" value="12" type="down" style="margin-right: 16px;"></Trend>
-            <Trend label="日同比" value="11" type="up"></Trend>
-          </div>
+          <mini-bar />
           <template v-slot:footer>
             <span>转化率</span>
             <span class="footer-number">60%</span>
@@ -62,10 +58,7 @@
               <a-icon type="info-circle" />
             </a-tooltip>
           </template>
-          <div>
-            <Trend label="周同比" value="12" type="down" style="margin-right: 16px;"></Trend>
-            <Trend label="日同比" value="11" type="up"></Trend>
-          </div>
+          <mini-progress :percent="70" :height="8"></mini-progress>
           <template v-slot:footer>
             <Trend label="周同比" value="12" type="up" style="margin-right: 16px;"></Trend>
             <Trend label="日同比" value="11" type="down"></Trend>
@@ -80,9 +73,12 @@
 <script>
 import ChartCard from '@/components/Chart/ChartCard'
 import Trend from '@/components/Trend'
+import MiniBar from '@/components/Chart/MiniBar'
+import MiniArea from '@/components/Chart/MiniArea'
+import MiniProgress from '@/components/Chart/MiniProgress'
 
 export default {
-  components: { ChartCard, Trend },
+  components: { ChartCard, Trend, MiniBar, MiniArea, MiniProgress },
   data () {
     return {}
   },
