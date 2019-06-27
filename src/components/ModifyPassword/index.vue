@@ -51,77 +51,77 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-  import { modifyPassword } from '@/api/auth';
+import { mapActions } from 'vuex'
+import { modifyPassword } from '@/api/auth'
 
-  export default {
-    props: {
-      visible: {
-        type: Boolean,
-        required: true
-      }
-    },
-    data() {
-      return {
-        form: this.$form.createForm(this),
-        loading: false,
-        confirmDirty: false,
-        formItemLayout: {
-          labelCol: { span: 6 },
-          wrapperCol: { span: 18 }
-        }
-      };
-    },
-    methods: {
-      ...mapActions('user', ['Logout']),
-      handleSubmit() {
-        const { getFieldValue } = this.form;
-        this.form.validateFields(async (err, form) => {
-          if (err) return;
-
-          this.loading = true;
-          const params = {};
-          params.password = getFieldValue('password');
-          params.newPassword = getFieldValue('newPassword');
-          const res = await modifyPassword(params);
-          this.loading = false;
-          if (res.status === 200) {
-            this.closeModal();
-            this.$success({
-              title: '修改成功',
-              content: '恭喜你，密码修改成功，请重新登录',
-              onOk: () => {
-                this.Logout().then(() => this.$router.replace('/login'));
-              }
-            });
-          } else {
-            this.$message.error(res.message);
-          }
-        });
-      },
-      closeModal() {
-        this.form.resetFields();
-        this.$emit('close');
-      },
-      handleConfirmBlur(e) {
-        const value = e.target.value;
-        this.confirmDirty = this.confirmDirty || !!value;
-      },
-      compareToFirstPassword(rule, value, callback) {
-        const form = this.form;
-        if (value && value !== form.getFieldValue('newPassword')) {
-          callback(new Error('两次输入的密码不一致!'));
-        } else {
-          callback();
-        }
-      },
-      validateToNextPassword(rule, value, callback) {
-        const form = this.form;
-        if (value && this.confirmDirty) {
-          form.validateFields(['confirm'], { force: true });
-        }
-        callback();
+export default {
+  props: {
+    visible: {
+      type: Boolean,
+      required: true
+    }
+  },
+  data () {
+    return {
+      form: this.$form.createForm(this),
+      loading: false,
+      confirmDirty: false,
+      formItemLayout: {
+        labelCol: { span: 6 },
+        wrapperCol: { span: 18 }
       }
     }
-  };
+  },
+  methods: {
+    ...mapActions('user', ['Logout']),
+    handleSubmit () {
+      const { getFieldValue } = this.form
+      this.form.validateFields(async (err, form) => {
+        if (err) return
+        
+        this.loading = true
+        const params = {}
+        params.password = getFieldValue('password')
+        params.newPassword = getFieldValue('newPassword')
+        const res = await modifyPassword(params)
+        this.loading = false
+        if (res.status === 200) {
+          this.closeModal()
+          this.$success({
+            title: '修改成功',
+            content: '恭喜你，密码修改成功，请重新登录',
+            onOk: () => {
+              this.Logout().then(() => this.$router.replace('/login'))
+            }
+          })
+        } else {
+          this.$message.error(res.message)
+        }
+      })
+    },
+    closeModal () {
+      this.form.resetFields()
+      this.$emit('close')
+    },
+    handleConfirmBlur (e) {
+      const value = e.target.value
+      this.confirmDirty = this.confirmDirty || !!value
+    },
+    compareToFirstPassword (rule, value, callback) {
+      const form = this.form
+      if (value && value !== form.getFieldValue('newPassword')) {
+        callback(new Error('两次输入的密码不一致!'))
+      } else {
+        callback()
+      }
+    },
+    validateToNextPassword (rule, value, callback) {
+      const form = this.form
+      if (value && this.confirmDirty) {
+        form.validateFields(['confirm'], { force: true })
+      }
+      callback()
+    }
+  }
+}
 </script>
