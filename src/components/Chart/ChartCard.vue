@@ -15,7 +15,9 @@
       </div>
     </div>
     <div class="chart-card-footer">
-      <slot name="footer"></slot>
+      <div class="chart-card-footer-inner">
+        <slot name="footer"></slot>
+      </div>
     </div>
   </a-card>
 </template>
@@ -91,6 +93,12 @@ export default {
       margin-top: 8px;
       padding-top: 9px;
       border-top: 1px solid rgb(232, 232, 232);
+      
+      .chart-card-footer-inner{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 </style>
