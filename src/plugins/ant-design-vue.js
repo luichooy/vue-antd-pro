@@ -32,7 +32,8 @@ import {
   Skeleton,
   Progress,
   Tag,
-  Switch
+  Switch,
+  Tabs
 } from 'ant-design-vue'
 
 Vue.prototype.$message = message
@@ -76,3 +77,5 @@ Vue.use(Skeleton)
 Vue.use(Progress)
 Vue.use(Tag)
 Vue.use(Switch)
+Vue.use(Tabs)
+Vue.use(Tabs.TabPane)
