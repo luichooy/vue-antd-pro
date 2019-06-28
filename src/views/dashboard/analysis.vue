@@ -66,24 +66,82 @@
         </chart-card>
       </a-col>
     </a-row>
-  
+    
+    <a-card
+      :loading="loading"
+      :bordered="false"
+      :bodyStyle="{ padding: 0 }"
+    >
+      <a-tabs v-model="activeTab" size="large" :tabBarStyle="{paddingLeft: '16px', marginBottom: '24px'}">
+        <template v-slot:tabBarExtraContent>
+          <div class="tab-extra-wrapper">
+            <div class="tab-extra-actions">
+              <a v-for="item in dateList" :key="item.key" @click="selectDate(item)">{{ item.label }}</a>
+            </div>
+            <a-range-picker
+              v-model="rangeDate"
+              style="width: 256px;"
+            ></a-range-picker>
+          </div>
+        </template>
+        <a-tab-pane tab="销售额" key="sale" :loading="loading">sale</a-tab-pane>
+        <a-tab-pane tab="访问量" key="pv" :loading="loading">pv</a-tab-pane>
+      </a-tabs>
+    </a-card>
   </div>
 </template>
 
 <script>
+// import moment from 'moment'
 import ChartCard from '@/components/Chart/ChartCard'
 import Trend from '@/components/Trend'
 import MiniBar from '@/components/Chart/MiniBar'
 import MiniArea from '@/components/Chart/MiniArea'
 import MiniProgress from '@/components/Chart/MiniProgress'
+import { getCurrent } from '@/utils/time'
+
+const dateList = [
+  {
+    key: 'today',
+    value: getCurrent('day'),
+    label: '今日'
+  },
+  {
+    key: 'week',
+    value: getCurrent('week'),
+    label: '本周'
+  },
+  {
+    key: 'month',
+    value: getCurrent('month'),
+    label: '本月'
+  },
+  {
+    key: 'year',
+    value: getCurrent('year'),
+    label: '本年'
+  }
+]
+
+console.log(dateList)
 
 export default {
   components: { ChartCard, Trend, MiniBar, MiniArea, MiniProgress },
   data () {
-    return {}
+    return {
+      loading: false,
+      rangeDate: [],
+      dateList,
+      activeTab: 'sale'
+    }
   },
   
-  methods: {}
+  methods: {
+    selectDate (item) {
+      console.log(item)
+      this.rangeDate = item.value
+    }
+  }
 }
 </script>
 
@@ -93,6 +151,24 @@ export default {
     .footer-number {
       margin-left: 8px;
       color: rgba(0, 0, 0, 0.85);
+    }
+    
+    .tab-extra-wrapper {
+      line-height: 55px;
+      padding-right: 24px;
+      
+      .tab-extra-actions {
+        display: inline-block;
+        margin-right: 24px;
+        
+        a {
+          color: rgba(0, 0, 0, .65);
+        }
+        
+        a + a {
+          margin-left: 24px;
+        }
+      }
     }
   }
 </style>
