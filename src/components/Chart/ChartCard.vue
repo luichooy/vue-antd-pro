@@ -1,24 +1,27 @@
 <template>
-  <a-card :bordered="false" :bodyStyle="{padding: '20px 24px 8px'}" class="chart-card">
-    <div class="chart-card-header">
-      <div class="meta">
-        <div class="meta-label">{{ title }}</div>
-        <div class="meta-total">{{ total }}</div>
-      </div>
-      <span class="chart-card-action">
+  <a-card :loading="loading" :bordered="false" :bodyStyle="{padding: '20px 24px 8px'}">
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div class="meta">
+          <div class="meta-label">{{ title }}</div>
+          <div class="meta-total">{{ total }}</div>
+        </div>
+        <span class="chart-card-action">
         <slot name="action"></slot>
       </span>
-    </div>
-    <div class="chart-card-content">
-      <div class="chart-card-content-inner">
-        <slot></slot>
+      </div>
+      <div class="chart-card-content">
+        <div class="chart-card-content-inner">
+          <slot></slot>
+        </div>
+      </div>
+      <div class="chart-card-footer">
+        <div class="chart-card-footer-inner">
+          <slot name="footer"></slot>
+        </div>
       </div>
     </div>
-    <div class="chart-card-footer">
-      <div class="chart-card-footer-inner">
-        <slot name="footer"></slot>
-      </div>
-    </div>
+    
   </a-card>
 </template>
 
@@ -33,7 +36,8 @@ export default {
     total: {
       type: String,
       default: ''
-    }
+    },
+    loading: Boolean
   }
 }
 </script>
@@ -94,7 +98,7 @@ export default {
       padding-top: 9px;
       border-top: 1px solid rgb(232, 232, 232);
       
-      .chart-card-footer-inner{
+      .chart-card-footer-inner {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

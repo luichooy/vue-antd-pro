@@ -2,7 +2,7 @@
   <div class="statistic-wrapper">
     <a-row :gutter="16">
       <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
-        <chart-card title="总销售额" total="¥126,560">
+        <chart-card title="总销售额" total="¥126,560" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
               <a-icon type="info-circle" />
@@ -20,7 +20,7 @@
       </a-col>
       
       <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
-        <chart-card title="访问量" total="8,846">
+        <chart-card title="访问量" total="8,846" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
               <a-icon type="info-circle" />
@@ -37,7 +37,7 @@
       </a-col>
       
       <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
-        <chart-card title="支付笔数" total="6,560">
+        <chart-card title="支付笔数" total="6,560" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
               <a-icon type="info-circle" />
@@ -52,7 +52,7 @@
       </a-col>
       
       <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
-        <chart-card title="运营活动效果" total="78%">
+        <chart-card title="运营活动效果" total="78%" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
               <a-icon type="info-circle" />
@@ -141,6 +141,12 @@ export default {
       console.log(item)
       this.rangeDate = item.value
     }
+  },
+  created () {
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
   }
 }
 </script>
