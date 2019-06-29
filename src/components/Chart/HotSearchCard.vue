@@ -101,7 +101,8 @@ export default {
     this.pagination = Object.assign({}, this.pagination, {
       pageSize: 5,
       showSizeChanger: false,
-      showTotal: null
+      showTotal: null,
+      style: { marginBottom: 0 }
     })
     this.search()
   }
