@@ -21,7 +21,6 @@
         </div>
       </div>
     </div>
-    
   </a-card>
 </template>
 

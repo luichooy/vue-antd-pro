@@ -84,21 +84,48 @@
             ></a-range-picker>
           </div>
         </template>
-        <a-tab-pane tab="销售额" key="sale" :loading="loading">sale</a-tab-pane>
-        <a-tab-pane tab="访问量" key="pv" :loading="loading">pv</a-tab-pane>
+        <a-tab-pane tab="销售额" key="sale" :loading="loading">
+          <a-row>
+            <a-col :xl="16" :lg="12" :sm="24">
+              <div class="bar-wrapper">
+                <bar title="销售趋势" />
+              </div>
+            </a-col>
+            <a-col :xl="8" :lg="12" :sm="24">
+              <div class="rank-list-wrapper">
+                <rank-list :data="rankListData" title="门店销售额排名"></rank-list>
+              </div>
+            </a-col>
+          </a-row>
+        </a-tab-pane>
+        <a-tab-pane tab="访问量" key="pv" :loading="loading">
+          <a-row>
+            <a-col :xl="16" :lg="12" :sm="24">
+              <div class="bar-wrapper">
+                <bar title="访问量趋势" />
+              </div>
+            </a-col>
+            <a-col :xl="8" :lg="12" :sm="24">
+              <div class="rank-list-wrapper">
+                <rank-list :data="rankListData" title="门店访问量排名"></rank-list>
+              </div>
+            </a-col>
+          </a-row>
+        </a-tab-pane>
       </a-tabs>
     </a-card>
   </div>
 </template>
 
 <script>
-// import moment from 'moment'
 import ChartCard from '@/components/Chart/ChartCard'
 import Trend from '@/components/Trend'
 import MiniBar from '@/components/Chart/MiniBar'
 import MiniArea from '@/components/Chart/MiniArea'
 import MiniProgress from '@/components/Chart/MiniProgress'
+import Bar from '@/components/Chart/Bar'
 import { getCurrent } from '@/utils/time'
+import RankList from '@/components/Chart/RankList'
 
 const dateList = [
   {
@@ -123,16 +150,25 @@ const dateList = [
   }
 ]
 
+const rankListData = []
+for (let i = 0; i < 7; i++) {
+  rankListData.push({
+    label: `工专路 ${i} 号店`,
+    value: Math.ceil(Math.random() * 10000)
+  })
+}
+
 console.log(dateList)
 
 export default {
-  components: { ChartCard, Trend, MiniBar, MiniArea, MiniProgress },
+  components: { ChartCard, Trend, MiniBar, MiniArea, MiniProgress, Bar, RankList },
   data () {
     return {
       loading: false,
       rangeDate: [],
       dateList,
-      activeTab: 'sale'
+      activeTab: 'sale',
+      rankListData
     }
   },
   
@@ -175,6 +211,14 @@ export default {
           margin-left: 24px;
         }
       }
+    }
+    
+    .bar-wrapper {
+      padding: 0 0 32px 32px;
+    }
+    
+    .rank-list-wrapper {
+      padding: 0 32px 32px 72px;
     }
   }
 </style>
