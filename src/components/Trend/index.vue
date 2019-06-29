@@ -12,16 +12,21 @@ export default {
     type: {
       type: String,
       default: 'up'
-    }
+    },
+    suffix: String
   },
   render () {
-    const { label, value, type } = this
+    const { label, value, type, suffix } = this
     const iconClass = ['trend-icon', `trend-icon-${type}`]
     const iconType = `caret-${type}`
     return (
       <div class="trend">
-        <span class="trend-label">{ label }</span>
-        <span class="trend-value">{ value }%</span>
+        { label && (<span class="trend-label">{ label }</span>) }
+        <span class="trend-value">
+          <span>{ value }</span>
+          { suffix && <span>{ suffix }</span> }
+          
+        </span>
         <span class={ iconClass }>
           <a-icon type={ iconType } />
         </span>
