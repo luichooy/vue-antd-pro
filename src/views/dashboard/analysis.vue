@@ -9,8 +9,8 @@
             </a-tooltip>
           </template>
           <div>
-            <Trend label="周同比" value="12" type="up" style="margin-right: 16px;"></Trend>
-            <Trend label="日同比" value="11" type="down"></Trend>
+            <Trend label="周同比" value="12" type="up" suffix="%" style="margin-right: 16px;"></Trend>
+            <Trend label="日同比" value="11" type="down" suffix="%"></Trend>
           </div>
           <template v-slot:footer>
             <span>日销售额</span>
@@ -60,8 +60,8 @@
           </template>
           <mini-progress :percent="70" :height="8"></mini-progress>
           <template v-slot:footer>
-            <Trend label="周同比" value="12" type="up" style="margin-right: 16px;"></Trend>
-            <Trend label="日同比" value="11" type="down"></Trend>
+            <Trend label="周同比" value="12" type="up" suffix="%" style="margin-right: 16px;"></Trend>
+            <Trend label="日同比" value="11" type="down" suffix="%"></Trend>
           </template>
         </chart-card>
       </a-col>
@@ -114,6 +114,15 @@
         </a-tab-pane>
       </a-tabs>
     </a-card>
+    
+    <a-row :gutter="16" style="margin-top: 16px;">
+      <a-col :xl="12">
+        <hot-search-card :loading="loading" />
+      </a-col>
+      <a-col :xl="12">
+        <sale-percent-card :loading="loading" />
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -124,8 +133,10 @@ import MiniBar from '@/components/Chart/MiniBar'
 import MiniArea from '@/components/Chart/MiniArea'
 import MiniProgress from '@/components/Chart/MiniProgress'
 import Bar from '@/components/Chart/Bar'
-import { getCurrent } from '@/utils/time'
 import RankList from '@/components/Chart/RankList'
+import HotSearchCard from '@/components/Chart/HotSearchCard'
+import SalePercentCard from '@/components/Chart/SalePercentCard'
+import { getCurrent } from '@/utils/time'
 
 const dateList = [
   {
@@ -161,7 +172,7 @@ for (let i = 0; i < 7; i++) {
 console.log(dateList)
 
 export default {
-  components: { ChartCard, Trend, MiniBar, MiniArea, MiniProgress, Bar, RankList },
+  components: { ChartCard, Trend, MiniBar, MiniArea, MiniProgress, Bar, RankList, HotSearchCard, SalePercentCard },
   data () {
     return {
       loading: false,
@@ -219,6 +230,15 @@ export default {
     
     .rank-list-wrapper {
       padding: 0 32px 32px 72px;
+    }
+    
+    .sale-percent-card ::v-deep .ant-card-head {
+      position: relative;
+      .radio-condition {
+        position: absolute;
+        right: 54px;
+        bottom: 12px;
+      }
     }
   }
 </style>
