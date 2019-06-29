@@ -1,5 +1,5 @@
 <template>
-  <a-card :loading="loading" :bordered="false" title="线上热门搜索">
+  <a-card :loading="loading" :bordered="false" title="线上热门搜索" style="height: 100%;">
     <template v-slot:extra>
       <a-dropdown placement="bottomRight">
         <a-icon type="ellipsis" style="cursor: pointer;" />

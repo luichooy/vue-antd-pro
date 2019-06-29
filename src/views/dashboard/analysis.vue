@@ -115,7 +115,7 @@
       </a-tabs>
     </a-card>
     
-    <a-row :gutter="16" style="margin-top: 16px;">
+    <a-row type="flex" :gutter="16" style="margin-top: 16px;">
       <a-col :xl="12">
         <hot-search-card :loading="loading" />
       </a-col>
@@ -168,8 +168,6 @@ for (let i = 0; i < 7; i++) {
     value: Math.ceil(Math.random() * 10000)
   })
 }
-
-console.log(dateList)
 
 export default {
   components: { ChartCard, Trend, MiniBar, MiniArea, MiniProgress, Bar, RankList, HotSearchCard, SalePercentCard },
