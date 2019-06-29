@@ -27,7 +27,7 @@
             </a-tooltip>
           </template>
           <div>
-            <mini-area />
+            <mini-area color="#975FE4" />
           </div>
           <template v-slot:footer>
             <span>日访问量</span>
