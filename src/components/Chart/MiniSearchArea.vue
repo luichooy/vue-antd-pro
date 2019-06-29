@@ -11,7 +11,7 @@
       <Trend :value="trend.value" :type="trend.type" />
     </div>
     <div class="search-chart">
-      <mini-area></mini-area>
+      <mini-area line />
     </div>
   </div>
 </template>
