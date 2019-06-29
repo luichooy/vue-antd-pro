@@ -25,7 +25,7 @@ const menus = [
     icon: 'table',
     path: '/table',
     name: 'table',
-    title: '表单页'
+    title: '表格页'
   },
   {
     id: '2',
