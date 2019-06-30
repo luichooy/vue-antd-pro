@@ -21,7 +21,7 @@ export default {
   },
   render () {
     const { data, title } = this
-    
+
     return (
       <div>
         <h4 style="margin-bottom: 20px;">{ title }</h4>
@@ -31,7 +31,6 @@ export default {
           <v-bar position="month*count" />
         </v-chart>
       </div>
-    
     )
   }
 }

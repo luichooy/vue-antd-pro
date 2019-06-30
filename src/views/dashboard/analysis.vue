@@ -5,7 +5,7 @@
         <chart-card title="总销售额" total="¥126,560" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
-              <a-icon type="info-circle" />
+              <a-icon type="info-circle"/>
             </a-tooltip>
           </template>
           <div>
@@ -23,11 +23,11 @@
         <chart-card title="访问量" total="8,846" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
-              <a-icon type="info-circle" />
+              <a-icon type="info-circle"/>
             </a-tooltip>
           </template>
           <div>
-            <mini-area color="#975FE4" />
+            <mini-area color="#975FE4"/>
           </div>
           <template v-slot:footer>
             <span>日访问量</span>
@@ -40,10 +40,10 @@
         <chart-card title="支付笔数" total="6,560" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
-              <a-icon type="info-circle" />
+              <a-icon type="info-circle"/>
             </a-tooltip>
           </template>
-          <mini-bar />
+          <mini-bar/>
           <template v-slot:footer>
             <span>转化率</span>
             <span class="footer-number">60%</span>
@@ -55,7 +55,7 @@
         <chart-card title="运营活动效果" total="78%" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
-              <a-icon type="info-circle" />
+              <a-icon type="info-circle"/>
             </a-tooltip>
           </template>
           <mini-progress :percent="70" :height="8"></mini-progress>
@@ -88,7 +88,7 @@
           <a-row>
             <a-col :xl="16" :lg="12" :sm="24">
               <div class="bar-wrapper">
-                <bar title="销售趋势" />
+                <bar title="销售趋势"/>
               </div>
             </a-col>
             <a-col :xl="8" :lg="12" :sm="24">
@@ -102,7 +102,7 @@
           <a-row>
             <a-col :xl="16" :lg="12" :sm="24">
               <div class="bar-wrapper">
-                <bar title="访问量趋势" />
+                <bar title="访问量趋势"/>
               </div>
             </a-col>
             <a-col :xl="8" :lg="12" :sm="24">
@@ -117,10 +117,10 @@
 
     <a-row type="flex" :gutter="16" style="margin-top: 16px;">
       <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-        <hot-search-card :loading="loading" />
+        <hot-search-card :loading="loading"/>
       </a-col>
       <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-        <sale-percent-card :loading="loading" />
+        <sale-percent-card :loading="loading"/>
       </a-col>
     </a-row>
   </div>
