@@ -1,13 +1,30 @@
 # vue-antd-pro
+基于vue-cli3 和 [ant-design-vue](https://vue.ant.design/docs/vue/introduce/)搭建的后台管理系统模板，使用json-server做数据mock。
 
 ## Project setup
+
+### 数据mock服务启用
+```
+cd server
+```
+```
+yarn install
+```
+```
+yarn start
+```
+
+### 前端服务启动
+```
+cd ..
+```
 ```
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
