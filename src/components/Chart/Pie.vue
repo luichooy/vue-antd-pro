@@ -1,173 +1,173 @@
 <script>
+import { View } from '@antv/data-set'
+
 export default {
   props: {
-    animate: Boolean,
+    animate: {
+      type: Boolean,
+      default: true
+    },
     color: String,
     colors: Array,
     selected: Boolean,
-    height: Number,
-    margin: Array,
-    padding: Array,
-    hasLegend: Boolean,
+    height: {
+      type: Number,
+      default: 0
+    },
+    margin: {
+      type: Array,
+      default: () => ([])
+    },
+    padding: {
+      type: [Array, String],
+      default: 'auto'
+    },
+    hasLegend: {
+      type: Boolean,
+      default: false
+    },
     percent: Number,
-    data: Array,
-    inner: Number,
-    innerWidth: Number,
-    forceFit: Boolean,
-    style: Object,
+    data: {
+      type: Array,
+      required: true
+    },
+    inner: {
+      type: Number,
+      default: 0.75
+    },
+    lineWidth: {
+      type: Number,
+      default: 1
+    },
+    forceFit: {
+      type: Boolean,
+      default: true
+    },
     className: String,
-    total: Number,
     title: String,
-    tooltip: Boolean,
+    tooltip: {
+      type: Boolean,
+      default: true
+    },
     valueFormat: Function,
+    total: [Function, String],
     subTitle: String
   },
-  data(){
+  data () {
     return {
       legendData: [],
-
+      
       legendBlock: false,
-
+      
       requestRef: '',
-
+      
       root: null,
-
+      
       chart: null
     }
   },
-
+  
   methods: {
-    getG2Instance(chart) {
-      this.chart = chart
-      this.getLegendData()
-    },
-    getLegendData(){
+    getLegendData () {
       if (!this.chart) return
       const geom = this.chart.getAllGeoms()[0] // 获取所有的图形
       if (!geom) return
-
+      
       const items = geom.get('dataArray') || []
-
+      
       const legendData = items.map(item => {
         const origin = item[0]._origin
         origin.color = item[0].color
         origin.checked = true
         return origin
       })
-
-      this.legendData = origin
+      
+      this.legendData = legendData
     },
     handleLegendClick (item, i) {
-      const newItem = item;
+      const newItem = item
       newItem.checked = !newItem.checked
-
+      
       const { legendData } = this
       legendData[i] = newItem
-
+      
       const filteredLegendData = legendData.filter(l => l.checked).map(l => l.x)
-
+      
       if (this.chart) {
         this.chart.filter('x', val => filteredLegendData.indexOf(`${val}`) > -1)
       }
-
+      
       this.legendData = legendData
     }
   },
-  render(){
+  mounted () {
+    this.chart = this.$refs.chart.chart.chartInstance
+    this.getLegendData()
+  },
+  render () {
     const {
-      valueFormat,
-      subTitle,
-      total,
-      hasLegend = false,
-      className,
-      style,
-      height = 0,
-      forceFit = true,
-      percent,
-      color,
-      inner = 0.75,
-      animate = true,
-      colors,
-      lineWidth = 1,
-      legendData,
-      legendBlock,
+      height,
+      forceFit,
+      inner,
+      lineWidth,
       data,
       tooltip,
-      selected
+      animate,
+      padding,
+      subTitle,
+      total
     } = this
-
-    const {
-      data: propsData,
-      selected: propsSelected = true,
-      tooltip: propsTooltip = true,
-    } = this
-
-    let data = propsData || [];
-    let selected = propsSelected;
-    let tooltip = propsTooltip;
-
-    const defaultColors = colors
-    data = data || []
-    selected = selected || true
-    tooltip = tooltip || true
-    let formatColor
-
-    const scale = {
-      x: {
+    
+    const scale = [
+      {
+        dataKey: 'x',
         type: 'cat',
-        range: [0, 1],
+        range: [0, 1]
       },
-      y: {
+      {
+        dataKey: 'y',
+        min: 0
+      },
+      {
+        dataKey: 'percent',
         min: 0,
-      },
-    }
-
-    if (percent || percent === 0) {
-      selected = false
-      tooltip = false
-      formatColor = (value) => {
-        if (value === '占比') {
-          return color || 'rgba(24, 144, 255, 0.85)'
-        }
-        return '#F0F2F5'
-      };
-
-      data = [
-        {
-          x: '占比',
-          y: parseFloat(`${percent}`),
-        },
-        {
-          x: '反比',
-          y: 100 - parseFloat(`${percent}`),
-        },
-      ];
-    }
-
-    const dv = new DataView()
+        formatter: '.2%'
+      }
+    ]
+    
+    const dv = new View()
     dv.source(data).transform({
       type: 'percent',
       field: 'y',
       dimension: 'x',
-      as: 'percent',
+      as: 'percent'
     })
-
+    
     return (
-      <div>
-        <div>
-          <v-chart
-            scale={scale}
-            height={height}
-            forceFit={forceFit}
-            data={dv}
-            padding={padding}
-            animate={animate}
-            onGetG2Instance={this.getG2Instance}
+      <div class="pie-wrapper">
+        <div class="pie-chart">
+          <v-chart data={ dv }
+            height={ height }
+            scale={ scale }
+            forceFit={ forceFit }
+            animate={ animate }
+            padding={ padding }
+            ref="chart"
           >
-            { !!tooltip && <v-tooltip showTitle="false" dataKey="x*percent"/> }
-            <v-coord type="theta" innerRadius={inner}/>
-            <v-pie position="percent" color="x" vStyle={{ lineWidth, stroke: '#fff' }}/>
+            <v-tooltip show={ !!tooltip } showTitle={ false } />
+            <v-axis />
+            <v-pie position="percent" color="x" style={ { lineWidth, stroke: '#fff' } } />
+            <v-coord type="theta" innerRadius={ inner } />
           </v-chart>
+          { (subTitle || total) && (
+            <div class="pie-center-title">
+              { subTitle && <h4 class="pie-sub-title">{ subTitle }</h4> }
+              { total && <div class="pie-stat">{ typeof total === 'function' ? total() : total }</div> }
+            </div>
+          ) }
+        </div>
+        <div class="pie-legend">
+          123
         </div>
       </div>
     )
@@ -175,5 +175,67 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  
+  .pie-wrapper{
+    position: relative;
+    
+    .pie-chart{
+      position: relative;
+      width: calc(100% - 240px);
+      font-size: 25px;
+    }
+  
+    .pie-legend {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      margin: 0 20px;
+      min-width: 200px;
+    
+      .lengend-item {
+        height: 22px;
+        line-height: 22px;
+        margin-bottom: 16px;
+        cursor: pointer;
+      
+        .legend-dot {
+          display: inline-block;
+          position: relative;
+          top: -1px;
+          width: 8px;
+          height: 8px;
+          margin-right: 8px;
+          border-radius: 100%;
+        }
+      
+        .legend-percent {
+          color: rgba(0, 0, 0, .45);
+        }
+      
+        .lengend-count {
+          position: absolute;
+          right: 0;
+        }
+      }
+    }
+  }
+  .pie-center-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-height: 62px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    
+    .pie-sub-title {
+      height: 22px;
+      line-height: 22px;
+      margin-bottom: 8px;
+      color: rgba(0, 0, 0, .45);
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
 
 </style>
