@@ -58,3 +58,11 @@ yarn run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+##  Todo:
+1.  Pie组件颜色有问题
+2.  Pie组件Legend点击饼图没有变化
+3.  offlineData组件中选中tab字体颜色问题
+4.  响应式下销售额柱状图右边距太近
+5.  响应式下销售额类别占比图和Legend应该分成两行
+6.  销售额骨架屏有问题
