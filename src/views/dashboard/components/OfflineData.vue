@@ -18,8 +18,8 @@ export default {
     } = this
     
     return (
-      <a-card loading={ loading } bordered={ false } style="margin-top: 16px;">
-        <a-tabs>
+      <a-card loading={ loading } bordered={ false } class="offline-data">
+        <a-tabs tabBarStyle={ { borderBottom: 'none' } }>
           { offlineData.map(shop => (
             <a-tab-pane key={ shop.name }>
               <template slot="tab">
@@ -36,3 +36,12 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  .offline-data ::v-deep {
+    margin-top: 16px;
+    
+    .ant-tabs-ink-bar {
+      bottom: auto;
+    }
+  }
+</style>

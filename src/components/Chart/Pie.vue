@@ -3,17 +3,28 @@ import { View } from '@antv/data-set'
 
 export default {
   props: {
+    height: {
+      type: Number,
+      default: 0
+    },
     animate: {
+      type: Boolean,
+      default: true
+    },
+    forceFit: {
+      type: Boolean,
+      default: true
+    },
+    selected: {
+      type: Boolean,
+      default: true
+    },
+    tooltip: {
       type: Boolean,
       default: true
     },
     color: String,
     colors: Array,
-    selected: Boolean,
-    height: {
-      type: Number,
-      default: 0
-    },
     margin: {
       type: Array,
       default: () => ([])
@@ -26,11 +37,6 @@ export default {
       type: Boolean,
       default: false
     },
-    percent: Number,
-    data: {
-      type: Array,
-      required: true
-    },
     inner: {
       type: Number,
       default: 0.75
@@ -39,19 +45,13 @@ export default {
       type: Number,
       default: 1
     },
-    forceFit: {
-      type: Boolean,
-      default: true
-    },
-    className: String,
+    data: Array,
+    percent: Number,
     title: String,
-    tooltip: {
-      type: Boolean,
-      default: true
-    },
-    valueFormat: Function,
+    subTitle: String,
     total: [Function, String],
-    subTitle: String
+    className: String,
+    valueFormat: Function
   },
   data () {
     return {
@@ -92,11 +92,9 @@ export default {
       legendData[i] = newItem
       
       const filteredLegendData = legendData.filter(l => l.checked).map(l => l.x)
-
+      
       if (this.chart) {
-        console.log(this.chart.filter)
         this.chart.filter('x', val => {
-          console.log(val)
           return filteredLegendData.indexOf(`${val}`) > -1
         })
       }
@@ -105,24 +103,55 @@ export default {
     }
   },
   mounted () {
-    this.chart = this.$refs.chart.chart.chartInstance
-    this.getLegendData()
+    if (this.hasLegend) {
+      this.chart = this.$refs.chart.chart.chartInstance
+      this.getLegendData()
+    }
   },
   render () {
-    const {
+    let {
       height,
       forceFit,
-      inner,
-      lineWidth,
-      data,
+      selected,
       tooltip,
       animate,
       padding,
+      inner,
+      lineWidth,
+      data,
       subTitle,
       total,
       hasLegend,
-      legendData
+      legendData,
+      percent,
+      color,
+      colors
     } = this
+    
+    let formatColor
+    const defaultColor = colors
+    if (percent || percent === 0) {
+      tooltip = false
+      selected = false
+      
+      formatColor = (value) => {
+        if (value === '占比') {
+          return color || 'rgba(24, 144, 255, 0.85)'
+        }
+        return '#F0F2F5'
+      }
+      
+      data = [
+        {
+          x: '占比',
+          y: parseFloat(`${percent}`)
+        },
+        {
+          x: '反比',
+          y: 100 - parseFloat(`${percent}`)
+        }
+      ]
+    }
     
     const scale = [
       {
@@ -150,7 +179,7 @@ export default {
     })
     
     return (
-      <div class="pie-wrapper">
+      <div class={ ['pie-wrapper', hasLegend && 'has-legend'] }>
         <div class="pie-chart">
           <v-chart data={ dv }
             height={ height }
@@ -162,7 +191,13 @@ export default {
           >
             <v-tooltip show={ !!tooltip } showTitle={ false } />
             <v-axis />
-            <v-pie position="percent" color="x" style={ { lineWidth, stroke: '#fff' } } />
+            <v-pie
+              position="percent"
+              select={ selected }
+              color="x"
+              /* color={ ['x', percent || percent === 0 ? formatColor : defaultColor] } */
+              style={ { lineWidth, stroke: '#fff' } }
+            />
             <v-coord type="theta" innerRadius={ inner } />
           </v-chart>
           { (subTitle || total) && (
@@ -200,43 +235,45 @@ export default {
   .pie-wrapper {
     position: relative;
     
-    .pie-chart {
-      position: relative;
-      width: calc(100% - 240px);
-      font-size: 25px;
-    }
-    
-    .pie-legend {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      margin: 0 20px;
-      min-width: 200px;
+    &.has-legend {
+      .pie-chart {
+        position: relative;
+        width: calc(100% - 240px);
+        font-size: 25px;
+      }
       
-      .legend-item {
-        height: 22px;
-        line-height: 22px;
-        margin-bottom: 16px;
-        cursor: pointer;
+      .pie-legend {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        margin: 0 20px;
+        min-width: 200px;
         
-        .legend-dot {
-          display: inline-block;
-          position: relative;
-          top: -1px;
-          width: 8px;
-          height: 8px;
-          margin-right: 8px;
-          border-radius: 100%;
-        }
-        
-        .legend-percent {
-          color: rgba(0, 0, 0, .45);
-        }
-        
-        .legend-count {
-          position: absolute;
-          right: 0;
+        .legend-item {
+          height: 22px;
+          line-height: 22px;
+          margin-bottom: 16px;
+          cursor: pointer;
+          
+          .legend-dot {
+            display: inline-block;
+            position: relative;
+            top: -1px;
+            width: 8px;
+            height: 8px;
+            margin-right: 8px;
+            border-radius: 100%;
+          }
+          
+          .legend-percent {
+            color: rgba(0, 0, 0, .45);
+          }
+          
+          .legend-count {
+            position: absolute;
+            right: 0;
+          }
         }
       }
     }

@@ -9,16 +9,25 @@
         :theme="currentKey !== data.name ? 'light' : undefined"
       />
     </a-col>
-    <a-col :span="12" :style="{ paddingTop: 36 }">456</a-col>
+    <a-col :span="12" :style="{ paddingTop: '36px' }">
+      <Pie
+        :animate="false"
+        :inner="0.55"
+        :tooltip="false"
+        :margin="[0, 0, 0, 0]"
+        :percent="Number(data.cvr) * 100"
+        :height="64" />
+    </a-col>
   </a-row>
 </template>
 
 <script>
 import NumberInfo from './NumberInfo'
+import Pie from '@/components/Chart/Pie'
 
 export default {
   name: 'CustomTab',
-  components: { NumberInfo },
+  components: { NumberInfo, Pie },
   props: {
     data: {
       type: Object,

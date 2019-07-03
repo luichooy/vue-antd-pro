@@ -69,7 +69,7 @@ export default {
         height: 32px;
         line-height: 32px;
         margin-right: 32px;
-        color: rgba(0, 0, 0, .85);
+        color: rgba(0, 0, 0, .65);
         font-size: 24px;
       }
       
