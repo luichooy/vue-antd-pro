@@ -23,24 +23,15 @@
     
     <div>
       <h4 class="chart-title">销售额</h4>
-  
+      
       <pie
         :data="data"
         :height="248"
         :lineWidth="4"
+        hasLegend
         :total="() => (data.reduce((acc,item) => (acc += item.y), 0))"
         subTitle="销售额"
       />
-  
-      <!--<ul class="chart-legend">-->
-      <!--<li v-for="(item, idx) in data" :key="idx" @click="legendClick(item)" class="lengend-item">-->
-      <!--<span :style="{ background: item.color }" class="legend-dot"></span>-->
-      <!--<span>{{ item.category }}</span>-->
-      <!--<a-divider type="vertical" />-->
-      <!--<span class="legend-percent">{{(item.percent * 100).toFixed(2) + '%' }}</span>-->
-      <!--<span class="lengend-count">{{ `￥${item.count}` }}</span>-->
-      <!--</li>-->
-      <!--</ul>-->
     </div>
   </a-card>
 </template>

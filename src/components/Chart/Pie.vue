@@ -84,20 +84,24 @@ export default {
       
       this.legendData = legendData
     },
-    handleLegendClick (item, i) {
+    onLegendClick (item, i) {
       const newItem = item
       newItem.checked = !newItem.checked
       
       const { legendData } = this
       legendData[i] = newItem
       
-      const filteredLegendData = legendData.filter(l => l.checked).map(l => l.x)
+      // const filteredLegendData = legendData.filter(l => l.checked).map(l => l.x)
+      //
+      // if (this.chart) {
+      //   console.log(this.chart.filter)
+      //   this.chart.filter('x', val => {
+      //     console.log(val)
+      //     return filteredLegendData.indexOf(`${val}`) > -1
+      //   })
+      // }
       
-      if (this.chart) {
-        this.chart.filter('x', val => filteredLegendData.indexOf(`${val}`) > -1)
-      }
-      
-      this.legendData = legendData
+      this.legendData = [...legendData]
     }
   },
   mounted () {
@@ -115,7 +119,9 @@ export default {
       animate,
       padding,
       subTitle,
-      total
+      total,
+      hasLegend,
+      legendData
     } = this
     
     const scale = [
@@ -166,9 +172,24 @@ export default {
             </div>
           ) }
         </div>
-        <div class="pie-legend">
-          123
-        </div>
+        { hasLegend && (
+          <ul class="pie-legend">
+            {
+              legendData.map((item, idx) => (
+                <li key={ idx }
+                  onClick={ $event => { this.onLegendClick(item, idx) } }
+                  class="legend-item"
+                >
+                  <span style={ { backgroundColor: !item.checked ? '#aaa' : item.color } } class="legend-dot" />
+                  <span>{ item.x }</span>
+                  <a-divider type="vertical" />
+                  <span class="legend-percent">{ (item.percent * 100).toFixed(2) + '%' }</span>
+                  <span class="legend-count">{ '￥' + item.y }</span>
+                </li>
+              ))
+            }
+          </ul>
+        ) }
       </div>
     )
   }
@@ -176,15 +197,15 @@ export default {
 </script>
 <style lang="scss" scoped>
   
-  .pie-wrapper{
+  .pie-wrapper {
     position: relative;
     
-    .pie-chart{
+    .pie-chart {
       position: relative;
       width: calc(100% - 240px);
       font-size: 25px;
     }
-  
+    
     .pie-legend {
       position: absolute;
       top: 50%;
@@ -192,13 +213,13 @@ export default {
       transform: translateY(-50%);
       margin: 0 20px;
       min-width: 200px;
-    
-      .lengend-item {
+      
+      .legend-item {
         height: 22px;
         line-height: 22px;
         margin-bottom: 16px;
         cursor: pointer;
-      
+        
         .legend-dot {
           display: inline-block;
           position: relative;
@@ -208,18 +229,19 @@ export default {
           margin-right: 8px;
           border-radius: 100%;
         }
-      
+        
         .legend-percent {
           color: rgba(0, 0, 0, .45);
         }
-      
-        .lengend-count {
+        
+        .legend-count {
           position: absolute;
           right: 0;
         }
       }
     }
   }
+  
   .pie-center-title {
     position: absolute;
     top: 50%;
