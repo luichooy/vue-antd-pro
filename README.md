@@ -27,6 +27,10 @@ yarn install
 yarn serve
 ```
 
+### 登录账号
+用户名： 任意输入
+密码： 字符数字[4-16]位的任意输入
+
 ### Compiles and minifies for production
 ```
 yarn run build
