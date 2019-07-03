@@ -70,7 +70,7 @@
     <a-card
       :loading="loading"
       :bordered="false"
-      :bodyStyle="{ padding: 0 }"
+      :bodyStyle="{ padding: loading ? '16px' : 0 }"
     >
       <a-tabs v-model="activeTab" size="large" :tabBarStyle="{paddingLeft: '16px', marginBottom: '24px'}">
         <template v-slot:tabBarExtraContent>
