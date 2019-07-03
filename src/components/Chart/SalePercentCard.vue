@@ -1,5 +1,5 @@
 <template>
-  <a-card :bordered="false" title="销售额类别占比" class="sale-percent-card" style="height: 100%;">
+  <a-card :loading="loading" :bordered="false" title="销售额类别占比" class="sale-percent-card" style="height: 100%;">
     <template v-slot:extra>
       <div class="radio-condition">
         <a-radio-group v-model="Radiocondition">
@@ -51,6 +51,9 @@ const sourceData = [
 export default {
   name: 'SalePercentCard',
   components: { Pie },
+  props: {
+    loading: Boolean
+  },
   data () {
     return {
       Radiocondition: '',

@@ -91,15 +91,15 @@ export default {
       const { legendData } = this
       legendData[i] = newItem
       
-      // const filteredLegendData = legendData.filter(l => l.checked).map(l => l.x)
-      //
-      // if (this.chart) {
-      //   console.log(this.chart.filter)
-      //   this.chart.filter('x', val => {
-      //     console.log(val)
-      //     return filteredLegendData.indexOf(`${val}`) > -1
-      //   })
-      // }
+      const filteredLegendData = legendData.filter(l => l.checked).map(l => l.x)
+
+      if (this.chart) {
+        console.log(this.chart.filter)
+        this.chart.filter('x', val => {
+          console.log(val)
+          return filteredLegendData.indexOf(`${val}`) > -1
+        })
+      }
       
       this.legendData = [...legendData]
     }
