@@ -5,7 +5,7 @@
         <chart-card title="总销售额" total="¥126,560" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
-              <a-icon type="info-circle"/>
+              <a-icon type="info-circle" />
             </a-tooltip>
           </template>
           <div>
@@ -18,16 +18,16 @@
           </template>
         </chart-card>
       </a-col>
-
+      
       <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
         <chart-card title="访问量" total="8,846" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
-              <a-icon type="info-circle"/>
+              <a-icon type="info-circle" />
             </a-tooltip>
           </template>
           <div>
-            <mini-area color="#975FE4"/>
+            <mini-area color="#975FE4" />
           </div>
           <template v-slot:footer>
             <span>日访问量</span>
@@ -35,27 +35,27 @@
           </template>
         </chart-card>
       </a-col>
-
+      
       <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
         <chart-card title="支付笔数" total="6,560" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
-              <a-icon type="info-circle"/>
+              <a-icon type="info-circle" />
             </a-tooltip>
           </template>
-          <mini-bar/>
+          <mini-bar />
           <template v-slot:footer>
             <span>转化率</span>
             <span class="footer-number">60%</span>
           </template>
         </chart-card>
       </a-col>
-
+      
       <a-col :xl="6" :sm="12" style="margin-bottom: 16px;">
         <chart-card title="运营活动效果" total="78%" :loading="loading">
           <template v-slot:action>
             <a-tooltip placement="top" title="指标说明">
-              <a-icon type="info-circle"/>
+              <a-icon type="info-circle" />
             </a-tooltip>
           </template>
           <mini-progress :percent="70" :height="8"></mini-progress>
@@ -66,7 +66,7 @@
         </chart-card>
       </a-col>
     </a-row>
-
+    
     <a-card
       :loading="loading"
       :bordered="false"
@@ -88,7 +88,7 @@
           <a-row>
             <a-col :xl="16" :lg="12" :sm="24">
               <div class="bar-wrapper">
-                <bar title="销售趋势"/>
+                <bar title="销售趋势" />
               </div>
             </a-col>
             <a-col :xl="8" :lg="12" :sm="24">
@@ -102,7 +102,7 @@
           <a-row>
             <a-col :xl="16" :lg="12" :sm="24">
               <div class="bar-wrapper">
-                <bar title="访问量趋势"/>
+                <bar title="访问量趋势" />
               </div>
             </a-col>
             <a-col :xl="8" :lg="12" :sm="24">
@@ -114,15 +114,20 @@
         </a-tab-pane>
       </a-tabs>
     </a-card>
-
+    
     <a-row type="flex" :gutter="16" style="margin-top: 16px;">
       <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-        <hot-search-card :loading="loading"/>
+        <hot-search-card :loading="loading" />
       </a-col>
       <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24">
-        <sale-percent-card :loading="loading"/>
+        <sale-percent-card :loading="loading" />
       </a-col>
     </a-row>
+    
+    <offline-data
+      :loading="loading"
+      :offlineData="offlineData"
+    />
   </div>
 </template>
 
@@ -136,6 +141,7 @@ import Bar from '@/components/Chart/Bar'
 import RankList from '@/components/Chart/RankList'
 import HotSearchCard from '@/components/Chart/HotSearchCard'
 import SalePercentCard from '@/components/Chart/SalePercentCard'
+import OfflineData from './components/OfflineData'
 import { getCurrent } from '@/utils/time'
 
 const dateList = [
@@ -169,18 +175,38 @@ for (let i = 0; i < 7; i++) {
   })
 }
 
+const offlineData = []
+for (let i = 0; i < 10; i++) {
+  offlineData.push({
+    name: `Stores ${i}`,
+    cvr: Math.random().toFixed(2)
+  })
+}
+
 export default {
-  components: { ChartCard, Trend, MiniBar, MiniArea, MiniProgress, Bar, RankList, HotSearchCard, SalePercentCard },
+  components: {
+    ChartCard,
+    Trend,
+    MiniBar,
+    MiniArea,
+    MiniProgress,
+    Bar,
+    RankList,
+    HotSearchCard,
+    SalePercentCard,
+    OfflineData
+  },
   data () {
     return {
       loading: false,
       rangeDate: [],
       dateList,
       activeTab: 'sale',
-      rankListData
+      rankListData,
+      offlineData
     }
   },
-
+  
   methods: {
     selectDate (item) {
       console.log(item)
@@ -198,38 +224,38 @@ export default {
 
 <style lang="scss" scoped>
   .statistic-wrapper {
-
+    
     .footer-number {
       margin-left: 8px;
       color: rgba(0, 0, 0, 0.85);
     }
-
+    
     .tab-extra-wrapper {
       line-height: 55px;
       padding-right: 24px;
-
+      
       .tab-extra-actions {
         display: inline-block;
         margin-right: 24px;
-
+        
         a {
           color: rgba(0, 0, 0, .65);
         }
-
+        
         a + a {
           margin-left: 24px;
         }
       }
     }
-
+    
     .bar-wrapper {
       padding: 0 0 32px 32px;
     }
-
+    
     .rank-list-wrapper {
       padding: 0 32px 32px 72px;
     }
-
+    
     .sale-percent-card ::v-deep .ant-card-head {
       position: relative;
       .radio-condition {
