@@ -30,6 +30,11 @@ export default {
     },
     title: String
   },
+  methods: {
+    slider () {
+      console.log(1)
+    }
+  },
   render () {
     const {
       height,
@@ -97,6 +102,13 @@ export default {
       }
     ]
     
+    const timeScale = {
+      type: 'time',
+      tickInterval: 60 * 60 * 1000,
+      mask: 'HH:mm',
+      range: [0, 1]
+    }
+    
     console.log(dv)
     
     return (
@@ -109,15 +121,28 @@ export default {
           <v-line position="x*value" color="key" size={ borderWidth } />
         </v-chart>
         <div style={ { marginRight: '-20px' } }>
-          123
+          <v-plugin>
+            <v-slider
+              data={ dataSource }
+              start={ ds.state.start }
+              end={ ds.state.end }
+              scales={ { x: timeScale } }
+              backgroundChart={ { type: 'line' } }
+              xAxis="x"
+              yAxis="y1"
+              width="auto"
+              height={ 26 }
+              padding={ [0, padding[1] + 20, 0, padding[3]] }
+              onchange={ ({ startValue, endValue }) => {
+                console.log(1)
+                ds.setState('start', startValue)
+                ds.setState('end', endValue)
+              } }
+            />
+          </v-plugin>
         </div>
       </div>
-    
     )
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
