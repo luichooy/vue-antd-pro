@@ -1,12 +1,17 @@
 <script>
 import CustomTab from './CustomTab'
+import TimelineChart from '@/components/Chart/TimelineChart'
 
 export default {
   name: 'OfflineData',
-  components: { CustomTab },
+  components: { CustomTab, TimelineChart },
   props: {
     loading: Boolean,
     offlineData: {
+      type: Array,
+      required: true
+    },
+    offlineChartData: {
       type: Array,
       required: true
     }
@@ -14,7 +19,8 @@ export default {
   render () {
     const {
       loading,
-      offlineData
+      offlineData,
+      offlineChartData
     } = this
     
     return (
@@ -26,7 +32,14 @@ export default {
                 <custom-tab data={ shop } />
               </template>
               <div style={ { padding: '0 24px' } }>
-                123
+                <timeline-chart
+                  height={ 400 }
+                  data={ offlineChartData }
+                  titleMap={ {
+                    y1: '客流量',
+                    y2: '支付笔数'
+                  } }
+                />
               </div>
             </a-tab-pane>
           )) }

@@ -127,6 +127,7 @@
     <offline-data
       :loading="loading"
       :offlineData="offlineData"
+      :offlineChartData="offlineChartData"
     />
   </div>
 </template>
@@ -183,6 +184,29 @@ for (let i = 0; i < 10; i++) {
   })
 }
 
+const offlineChartData = [
+  { x: 1562221275384, y1: 95, y2: 83 },
+  { x: 1562223075384, y1: 82, y2: 43 },
+  { x: 1562224875384, y1: 43, y2: 18 },
+  { x: 1562226675384, y1: 58, y2: 71 },
+  { x: 1562228475384, y1: 103, y2: 40 },
+  { x: 1562230275384, y1: 34, y2: 51 },
+  { x: 1562232075384, y1: 93, y2: 50 },
+  { x: 1562233875384, y1: 50, y2: 37 },
+  { x: 1562235675384, y1: 99, y2: 53 },
+  { x: 1562237475384, y1: 46, y2: 53 },
+  { x: 1562239275384, y1: 72, y2: 58 },
+  { x: 1562241075384, y1: 65, y2: 77 },
+  { x: 1562242875384, y1: 108, y2: 42 },
+  { x: 1562244675384, y1: 29, y2: 54 },
+  { x: 1562246475384, y1: 27, y2: 63 },
+  { x: 1562248275384, y1: 105, y2: 69 },
+  { x: 1562250075384, y1: 30, y2: 50 },
+  { x: 1562251875384, y1: 80, y2: 74 },
+  { x: 1562253675384, y1: 63, y2: 69 },
+  { x: 1562255475384, y1: 72, y2: 84 }
+]
+
 export default {
   components: {
     ChartCard,
@@ -203,7 +227,8 @@ export default {
       dateList,
       activeTab: 'sale',
       rankListData,
-      offlineData
+      offlineData,
+      offlineChartData
     }
   },
   
