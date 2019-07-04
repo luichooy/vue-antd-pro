@@ -38,10 +38,15 @@ yarn run build
 
 ### 效果预览
 ![login.png](https://upload-images.jianshu.io/upload_images/1918644-b25648a03fb53583.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![table.png](https://upload-images.jianshu.io/upload_images/1918644-af6a0349ccedba08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![analysis.png](https://upload-images.jianshu.io/upload_images/1918644-52e3b8100691eaf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![setting1.png](https://upload-images.jianshu.io/upload_images/1918644-7a0d2234517ab788.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![setting2.png](https://upload-images.jianshu.io/upload_images/1918644-d460e843cb86ab41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ![setting3.png](https://upload-images.jianshu.io/upload_images/1918644-2f29223b39adb363.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ##  Todo:
