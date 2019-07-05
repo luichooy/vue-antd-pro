@@ -86,12 +86,12 @@
         </template>
         <a-tab-pane tab="销售额" key="sale" :loading="loading">
           <a-row>
-            <a-col :xl="16" :lg="12" :sm="24">
+            <a-col :xl="16" :md="12" :sm="24">
               <div class="bar-wrapper">
                 <bar title="销售趋势" />
               </div>
             </a-col>
-            <a-col :xl="8" :lg="12" :sm="24">
+            <a-col :xl="8" :md="12" :sm="24">
               <div class="rank-list-wrapper">
                 <rank-list :data="rankListData" title="门店销售额排名"></rank-list>
               </div>
@@ -271,10 +271,22 @@ export default {
           margin-left: 24px;
         }
       }
+      
+      @media screen and (max-width: 992px) {
+        .tab-extra-actions {
+          display: none;
+        }
+      }
     }
     
     .bar-wrapper {
       padding: 0 0 32px 32px;
+    }
+    
+    @media screen and (max-width: 768px) {
+      .bar-wrapper {
+        padding: 16px;
+      }
     }
     
     .rank-list-wrapper {
