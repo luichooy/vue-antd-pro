@@ -111,6 +111,12 @@ export default {
     
     console.log(dv)
     
+    const sliderChange = ({ startValue, endValue }) => {
+      console.log(1)
+      ds.setState('start', startValue)
+      ds.setState('end', endValue)
+    }
+    
     return (
       <div style={ { height: height + 30 } }>
         { title && <h4>{ title }</h4> }
@@ -133,7 +139,7 @@ export default {
               width="auto"
               height={ 26 }
               padding={ [0, padding[1] + 20, 0, padding[3]] }
-              onchange={ ({ startValue, endValue }) => {
+              onChange={ ({ startValue, endValue }) => {
                 console.log(1)
                 ds.setState('start', startValue)
                 ds.setState('end', endValue)
