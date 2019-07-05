@@ -95,13 +95,12 @@ export default {
   .layout {
     .layout-right {
       position: relative;
-      
       box-sizing: border-box;
       transition: all 0.3s;
       
       .layout-content {
         width: 100%;
-        padding: 16px 0 0;
+        padding: 16px 16px 0;
         display: flex;
         
         .layout-content--inner {
@@ -115,19 +114,13 @@ export default {
     .layout-content__fixed {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 16px 0 0 !important;
     }
     
-    .layout-content__fluid {
-      padding: 16px 16px 0 !important;
-    }
-    
-    &.layout-desktop .layout-content {
-      padding: 16px 16px 0;
-    }
-    
-    &.layout-mobile .layout-content__fluid {
-      padding: 16px 0 0 !important;
+    @media screen and (min-width: 1200px) {
+      .layout-content__fixed {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
     }
   }
 </style>
