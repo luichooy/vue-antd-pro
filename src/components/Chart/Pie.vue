@@ -1,5 +1,6 @@
 <script>
 import { View } from '@antv/data-set'
+import { debounce } from '@/utils/optimize'
 
 export default {
   props: {
@@ -57,13 +58,7 @@ export default {
     return {
       legendData: [],
       
-      legendBlock: false,
-      
-      requestRef: '',
-      
-      root: null,
-      
-      chart: null
+      legendBlock: false
     }
   },
   
@@ -100,13 +95,34 @@ export default {
       }
       
       this.legendData = [...legendData]
-    }
+    },
+    onResize: debounce(function () {
+      const { hasLegend, legendBlock } = this
+      if (!hasLegend || !this.root) {
+        window.removeEventListener('resize', this.onResize, false)
+        return
+      }
+      if (
+        this.root &&
+        this.root.parentNode &&
+        this.root.parentNode.clientWidth <= 380
+      ) {
+        this.legendBlock = true
+      } else if (legendBlock) {
+        this.legendBlock = false
+      }
+    })
   },
   mounted () {
     if (this.hasLegend) {
       this.chart = this.$refs.chart.chart.chartInstance
+      this.root = this.$refs.root
       this.getLegendData()
+      window.addEventListener('resize', this.onResize, false)
     }
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.onResize, false)
   },
   render () {
     let {
@@ -121,12 +137,15 @@ export default {
       data,
       subTitle,
       total,
-      hasLegend,
-      legendData,
       percent,
       color,
-      colors
+      colors,
+      hasLegend,
+      legendData,
+      legendBlock
     } = this
+    
+    const rootClass = ['pie-wrapper', hasLegend && 'has-legend', legendBlock && 'legend-block']
     
     let formatColor
     const defaultColor = colors
@@ -179,9 +198,10 @@ export default {
     })
     
     return (
-      <div class={ ['pie-wrapper', hasLegend && 'has-legend'] }>
+      <div ref="root" class={ rootClass }>
         <div class="pie-chart">
-          <v-chart data={ dv }
+          <v-chart
+            data={ dv }
             height={ height }
             scale={ scale }
             forceFit={ forceFit }
@@ -275,6 +295,18 @@ export default {
             right: 0;
           }
         }
+      }
+    }
+    
+    &.legend-block {
+      .pie-chart {
+        width: 100%;
+        margin: 0 0 32px;
+      }
+      
+      .pie-legend {
+        position: relative;
+        transform: none;
       }
     }
   }

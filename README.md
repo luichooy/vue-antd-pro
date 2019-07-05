@@ -53,5 +53,5 @@ yarn run build
 1.  Pie组件颜色有问题
 2.  Pie组件Legend点击饼图没有变化
 3.  offlineData组件中选中tab字体颜色问题
-5.  响应式下销售额类别占比图和Legend应该分成两行
+5.  销售额类别占比 图和legend响应式 图没有及时更新以及mounted的时候未执行初始逻辑
 6.  v-slider组件onchange方法不起作用
