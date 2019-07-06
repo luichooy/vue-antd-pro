@@ -1,6 +1,17 @@
 {
   "name": "vue-antd-pro",
   "version": "0.1.0",
+  "description": "A Vue.js template for PC backstage base ant-design-vue",
+  "author": "luichooy",
+  "license": "MIT",
+  "homepage": "https://github.com/luichooy/vue-antd-pro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luichooy/vue-antd-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luichooy/vue-antd-pro/issues"
+  },
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
