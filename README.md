@@ -61,11 +61,11 @@ yarn serve
 ![setting3.png](https://upload-images.jianshu.io/upload_images/1918644-2f29223b39adb363.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ##  Todos
-1.  Pie组件颜色有问题
-2.  Pie组件Legend点击饼图没有变化
-3.  offlineData组件中选中tab字体颜色问题
-5.  销售额类别占比 图和legend响应式 图没有及时更新以及mounted的时候未执行初始逻辑
-6.  v-slider组件onchange方法不起作用
+*  Pie组件颜色有问题
+*  Pie组件Legend点击饼图没有变化
+*  offlineData组件中选中tab字体颜色问题
+*  销售额类别占比 图和legend响应式 图没有及时更新以及mounted的时候未执行初始逻辑
+*  v-slider组件onchange方法不起作用
 
 
 ## Author
