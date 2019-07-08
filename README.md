@@ -12,25 +12,25 @@
   </a>
 </p>
 
-> A Vue.js template for PC backstage base ant-design-vue
+> 基于vue-cli3 和 [ant-design-vue](https://vue.ant.design/docs/vue/introduce/)搭建的后台管理系统模板，使用json-server做数据mock。
 
-## Installation
+## 安装依赖
 
-install frontend dependencies
+安装前端依赖
 ```sh
 yarn
 ```
 
-install mock dependencies
+安装数据mock依赖
 ```sh
 cd server
 
 yarn
 ```
 
-## Running
+## 运行
 
-Running mock server
+运行数据mock服务
 ```sh
 // enter server directory
 cd server
@@ -38,7 +38,7 @@ cd server
 yarn start
 ```
 
-Running dev server
+运行前端本地服务
 ```sh
 // go back to project root directory
 cd ..
@@ -46,7 +46,13 @@ cd ..
 yarn serve
 ```
 
-## Preview
+## 账号
+```
+用户名： 任意输入
+密码： 字符数字[4-16]位的任意输入
+```
+
+## 预览
 
 ![login.png](https://upload-images.jianshu.io/upload_images/1918644-b25648a03fb53583.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
