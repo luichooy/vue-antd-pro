@@ -3,7 +3,7 @@
   <a-modal
     :visible="visible"
     @ok="onSubmit"
-    @cancel="closeModal"
+    @cancel="closeModal(false)"
     :maskClosable="false"
     :keyboard="false"
     :confirmLoading="loading"
@@ -72,8 +72,7 @@
             }
           ]"
           :options="roleOptions"
-        >
-        </a-select>
+        ></a-select>
       </a-form-item>
       <a-form-item v-bind="formItemLayout" label="状态">
         <a-select
