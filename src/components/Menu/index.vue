@@ -1,6 +1,7 @@
 <script>
 import { mapState } from 'vuex'
 import { appStoreMixin, deviceMixin } from '@/mixins'
+import { generateOpenKeys } from '@/utils'
 
 export default {
   mixins: [appStoreMixin, deviceMixin],
@@ -48,14 +49,10 @@ export default {
   },
   methods: {
     onOpenChange (openKeys) {
-      const latestOpenKey = openKeys.find(
-        key => this.openKeys.indexOf(key) === -1
-      )
-      if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-        this.openKeys = openKeys
-      } else {
-        this.openKeys = latestOpenKey ? [latestOpenKey] : []
-      }
+      const latestOpenKey = openKeys[openKeys.length - 1]
+      const keyPath = latestOpenKey ? latestOpenKey.split('/') : []
+      keyPath.shift()
+      this.openKeys = generateOpenKeys(keyPath)
     },
     handleMenuClick ({ item, key, keyPath }) {
       this.selectedKeys = [keyPath[keyPath.length - 1]]
@@ -63,14 +60,17 @@ export default {
       this.$emit('close')
     },
     updateMenu () {
-      // fullPath : '/waybill/upload'
+      // fullPath : '/customs/export/query'
       let openKeys = []
       const { fullPath } = this.$route
       const keyPath = fullPath.split('/')
       keyPath.shift()
+      keyPath.pop()
       this.selectedKeys = [fullPath]
       
-      this.mode === 'inline' && (openKeys = ['/' + keyPath.shift()])
+      if (this.mode === 'inline') {
+        openKeys = generateOpenKeys(keyPath)
+      }
       
       this.collapsed
         ? (this.cacheOpenKeys = openKeys)
@@ -120,7 +120,7 @@ export default {
             return (
               <a-sub-menu key={ menu.path }>
                 <span slot="title">
-                  <a-icon type={ menu.icon } />
+                  { menu.icon && <a-icon type={ menu.icon } /> }
                   <span>{ menu.title }</span>
                 </span>
                 { generateMenu(menu.children) }
