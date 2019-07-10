@@ -91,9 +91,9 @@ export default {
     } = this
     
     const menuWrapClass = [
-      'yto-menu',
-      isSide && 'yto-menu__side',
-      `yto-menu__${menuTheme}`
+      'lu-menu',
+      isSide && 'lu-menu__side',
+      `lu-menu__${menuTheme}`
     ]
     
     const menuProps = {
@@ -146,10 +146,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .yto-menu {
-    &.yto-menu__side {
+  .lu-menu {
+    &.lu-menu__side {
       border-top: 1px solid #3d4348;
-      &.yto-menu__light {
+      &.lu-menu__light {
         border-top-color: rgba(61, 67, 72, 0.1);
       }
     }
