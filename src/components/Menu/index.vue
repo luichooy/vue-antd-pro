@@ -24,9 +24,6 @@ export default {
   },
   computed: {
     ...mapState('permission', ['menus']),
-    rootSubmenuKeys () {
-      return this.menus.map(menu => menu.path)
-    },
     isSide () {
       return (
         this.layoutMode === 'side' ||
