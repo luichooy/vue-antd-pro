@@ -87,7 +87,12 @@ request.interceptors.request.use(
 // 响应拦截器
 request.interceptors.response.use(res => {
   console.log(res)
-  return res.data
+  const jsonPattern = /application\/json/gi;
+  if (jsonPattern.test(res.headers['content-type'])) {
+    return res.data;
+  } else {
+    return res;
+  }
 }, onError)
 
 export default request
