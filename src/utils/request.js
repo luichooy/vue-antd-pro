@@ -7,6 +7,8 @@ import notification from 'ant-design-vue/es/notification'
 
 // api 配置
 
+let timer = null
+
 const onError = error => {
   if (error.response) {
     const status = error.response.status
@@ -28,14 +30,17 @@ const onError = error => {
       })
     }
     
-    if (status === 401) {
-      notification.error({
-        message: '未授权',
-        description: '授权失败，请重新登录'
-      })
-      if (token) {
-        store.dispatch('user/Logout').then(() => router.replace('/login'))
-      }
+    if (status === 401 && !timer) {
+      timer = setTimeout(() => {
+        notification.error({
+          message: '未授权',
+          description: '授权失败，请重新登录'
+        })
+        if (token) {
+          store.dispatch('user/Logout').then(() => router.replace('/login'))
+        }
+        timer = null
+      }, 500)
     }
   }
   return Promise.reject(error)
