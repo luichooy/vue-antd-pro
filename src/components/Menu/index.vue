@@ -52,7 +52,7 @@ export default {
       this.openKeys = generateOpenKeys(keyPath)
     },
     handleMenuClick ({ item, key, keyPath }) {
-      this.selectedKeys = [keyPath[keyPath.length - 1]]
+      this.selectedKeys = [keyPath[0]]
       this.$router.push(key)
       this.$emit('close')
     },
