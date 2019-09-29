@@ -5,7 +5,7 @@ export const pieOptions = {
     formatter (params) {
       return `${params.seriesName}</br>${params.marker}${params.name}：${
         params.data.value
-      } (${params.percent}%)`;
+      } (${params.percent}%)`
     },
     confine: true,
     padding: [10, 10, 6, 10],
@@ -25,13 +25,13 @@ export const pieOptions = {
       radius: ['45%', '60%'],
       label: {
         formatter: params => {
-          const name = params.name;
-          return name.length > 5 ? name.substring(0, 5) + '...' : name;
+          const name = params.name
+          return name.length > 5 ? name.substring(0, 5) + '...' : name
         }
       }
     }
   ]
-};
+}
 
 // 单量分布
 export const countColumn = [
@@ -54,7 +54,7 @@ export const countColumn = [
     align: 'center',
     width: 150
   }
-];
+]
 
 // 申报成功率
 export const rateColumn = [
@@ -83,4 +83,4 @@ export const rateColumn = [
     align: 'center',
     width: 200
   }
-];
+]
