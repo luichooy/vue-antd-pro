@@ -55,6 +55,7 @@
 		"lint-staged": "^9.4.0",
 		"sass": "^1.18.0",
 		"sass-loader": "^7.1.0",
+		"stylelint": "^11.0.0",
 		"vue-template-compiler": "^2.6.10"
 	},
 	"husky": {
