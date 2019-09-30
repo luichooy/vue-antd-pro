@@ -1,66 +1,67 @@
 {
-	"name": "vue-antd-pro",
-	"version": "0.1.0",
-	"description": "A Vue.js template for PC backstage base ant-design-vue",
-	"author": "luichooy",
-	"license": "MIT",
-	"homepage": "https://github.com/luichooy/vue-antd-pro",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/luichooy/vue-antd-pro.git"
-	},
-	"bugs": {
-		"url": "https://github.com/luichooy/vue-antd-pro/issues"
-	},
-	"private": true,
-	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build",
-		"lint": "vue-cli-service lint",
-		"test:e2e": "vue-cli-service test:e2e",
-		"test:unit": "vue-cli-service test:unit"
-	},
-	"dependencies": {
-		"@antv/data-set": "^0.10.2",
-		"ant-design-vue": "^1.3.10",
-		"axios": "^0.19.0",
-		"core-js": "^2.6.5",
-		"enquire.js": "^2.1.6",
-		"js-base64": "^2.5.1",
-		"moment": "^2.24.0",
-		"nprogress": "^0.2.0",
-		"viser-vue": "^2.4.6",
-		"vue": "^2.6.10",
-		"vue-ls": "^3.2.1",
-		"vue-router": "^3.0.3",
-		"vuex": "^3.0.1"
-	},
-	"devDependencies": {
-		"@vue/cli-plugin-babel": "^3.8.0",
-		"@vue/cli-plugin-e2e-nightwatch": "^3.8.0",
-		"@vue/cli-plugin-eslint": "^3.8.0",
-		"@vue/cli-plugin-unit-jest": "^3.8.0",
-		"@vue/cli-service": "^3.8.0",
-		"@vue/eslint-config-standard": "^4.0.0",
-		"@vue/test-utils": "1.0.0-beta.29",
-		"babel-core": "7.0.0-bridge.0",
-		"babel-eslint": "^10.0.1",
-		"babel-jest": "^23.6.0",
-		"babel-plugin-import": "^1.12.0",
-		"eslint": "^5.16.0",
-		"eslint-plugin-vue": "^5.0.0",
-		"husky": "^4.0.0-beta.2",
-		"less": "2.7.3",
-		"less-loader": "^5.0.0",
-		"lint-staged": "^9.4.0",
-		"sass": "^1.18.0",
-		"sass-loader": "^7.1.0",
-		"stylelint": "^11.0.0",
-		"vue-template-compiler": "^2.6.10"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	}
+  "name": "vue-antd-pro",
+  "version": "0.1.0",
+  "description": "A Vue.js template for PC backstage base ant-design-vue",
+  "author": "luichooy",
+  "license": "MIT",
+  "homepage": "https://github.com/luichooy/vue-antd-pro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luichooy/vue-antd-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luichooy/vue-antd-pro/issues"
+  },
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "@antv/data-set": "^0.10.2",
+    "ant-design-vue": "^1.3.10",
+    "axios": "^0.19.0",
+    "core-js": "^2.6.5",
+    "enquire.js": "^2.1.6",
+    "js-base64": "^2.5.1",
+    "moment": "^2.24.0",
+    "nprogress": "^0.2.0",
+    "viser-vue": "^2.4.6",
+    "vue": "^2.6.10",
+    "vue-ls": "^3.2.1",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-plugin-unit-jest": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-import": "^1.12.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "husky": "^4.0.0-beta.2",
+    "less": "2.7.3",
+    "less-loader": "^5.0.0",
+    "lint-staged": "^9.4.0",
+    "sass": "^1.18.0",
+    "sass-loader": "^7.1.0",
+    "stylelint": "^11.0.0",
+    "stylelint-config-standard": "^19.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
