@@ -2,13 +2,17 @@ language: node_js # 设置语言
 
 node_js: '10.16.3' # 设置语言版本
 
-# cache:
-#   directories:
-#     - node_modules # 缓存依赖
+cache:
+  directories:
+    - node_modules # 缓存依赖
 
-# # start: build lifecycle
-# install:
-#   - yarn
+# start: build lifecycle
+install:
+  - yarn
 
-# script:
-#   - yarn build
+script:
+  - yarn build
+
+branches:
+  only:
+    - master
