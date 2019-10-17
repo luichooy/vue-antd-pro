@@ -4,8 +4,7 @@ const otherRoutes = [
   {
     path: '/login',
     name: 'login',
-    component: () =>
-      import(/* webpackChunkName: "login" */ '@/views/auth/login')
+    component: () => import(/* webpackChunkName: "login" */ '@/views/auth/login')
   },
   {
     path: '/error',
@@ -16,8 +15,7 @@ const otherRoutes = [
       {
         path: '404',
         name: '404',
-        component: () =>
-          import(/* webpackChunkName: "404" */ '@/views/error/404')
+        component: () => import(/* webpackChunkName: "404" */ '@/views/error/404')
       }
     ]
   }
@@ -63,6 +61,14 @@ export const appRoutes = [
               title: '监控页'
             },
             component: () => import(/* webpackChunkName: "monitor" */ '@/views/dashboard/monitor')
+          },
+          {
+            path: 'v-charts',
+            name: 'v-charts',
+            meta: {
+              title: 'v-charts'
+            },
+            component: () => import(/* webpackChunkName: "v-charts" */ '@/views/dashboard/vcharts')
           }
         ]
       }

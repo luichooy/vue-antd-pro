@@ -47,6 +47,13 @@ const menus = [
         path: '/dashboard/monitor',
         name: 'monitor',
         title: '监控页'
+      },
+      {
+        id: '23',
+        icon: '',
+        path: '/dashboard/v-charts',
+        name: 'v-charts',
+        title: 'v-charts'
       }
     ]
   }
@@ -73,7 +80,8 @@ module.exports = () => {
     login: {
       status: 200,
       data: {
-        token: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwMTU2MjA5MyIsImNyZWF0ZWQiOjE1NjE1MTY3NjU5MzMsImNvbXBhbnlOYW1lIjoiQee9kSIsInRlbmFudElkIjoxLCJ1c2VyVHlwZSI6InN0YWZmIiwiaWQiOjEsImV4cCI6MTU2MTUyMDM2NX0.j8sWbwXzHnSgvz7em2DjAhNDU5xaxysEFES8SlyJZnj0lVgXKax4tEDNGawZivW6Ip1734Rnvb6z2te8jGmIWQ"',
+        token:
+					'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwMTU2MjA5MyIsImNyZWF0ZWQiOjE1NjE1MTY3NjU5MzMsImNvbXBhbnlOYW1lIjoiQee9kSIsInRlbmFudElkIjoxLCJ1c2VyVHlwZSI6InN0YWZmIiwiaWQiOjEsImV4cCI6MTU2MTUyMDM2NX0.j8sWbwXzHnSgvz7em2DjAhNDU5xaxysEFES8SlyJZnj0lVgXKax4tEDNGawZivW6Ip1734Rnvb6z2te8jGmIWQ"',
         menus: menus,
         user: casual.user(casual.random_element(roleMap))
       },
@@ -84,10 +92,10 @@ module.exports = () => {
       message: 'success'
     }
   }
-  
+
   for (let i = 0; i < 54; i++) {
     data.users.push(casual.user(casual.random_element(roleMap)))
   }
-  
+
   return data
 }
