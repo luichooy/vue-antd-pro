@@ -30,7 +30,21 @@ export default {
   data () {
     this.lineExtend = {
       xAxis: {
+        axisTick: {
+          show: true,
+          // alignWithLabel: true
+          length: 100,
+          lineStyle: {
+            type: 'dashed'
+          }
+        },
+        splitArea: {
+          show: true
+        },
         axisLabel: {
+          interval: 0,
+          margin: 20,
+          align: 'center',
           formatter (date, index) {
             console.log(date, index)
             let weather = {
@@ -103,7 +117,7 @@ export default {
     }
     return {
       chartData: {
-        columns: ['日期', '访问用户', '下单用户', '下单率'],
+        columns: ['日期', '访问用户', '下单用户'],
         rows: [
           { 日期: '2019-10-01', 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
           { 日期: '2019-10-02', 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
