@@ -69,6 +69,14 @@ export const appRoutes = [
               title: 'v-charts'
             },
             component: () => import(/* webpackChunkName: "v-charts" */ '@/views/dashboard/vcharts')
+          },
+          {
+            path: 'track',
+            name: 'track',
+            meta: {
+              title: '轨迹图'
+            },
+            component: () => import(/* webpackChunkName: "track" */ '@/views/dashboard/track')
           }
         ]
       }

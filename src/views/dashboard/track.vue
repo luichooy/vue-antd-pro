@@ -1,10 +1,10 @@
 <template>
-  <div class="track"></div>
+  <div class="track">123</div>
 </template>
 
 <script>
 export default {
-  name: 'track'
+  name: ''
 }
 </script>
 
