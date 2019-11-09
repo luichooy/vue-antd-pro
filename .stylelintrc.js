@@ -5,6 +5,7 @@ module.exports = {
   //   defaultSeverity: 'error', //指定应用到所有rules上的严格程度，可选值有‘warning','error'
   rules: {
     'font-family-no-missing-generic-family-keyword': null,
-    'no-empty-source': 'off'
+    'no-empty-source': null,
+    'no-eol-whitespace': null
   }
 }

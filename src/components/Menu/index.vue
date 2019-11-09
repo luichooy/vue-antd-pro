@@ -1,4 +1,4 @@
-<script>
+<script lang="jsx">
 import { mapState } from 'vuex'
 import { appStoreMixin, deviceMixin } from '@/mixins'
 import { generateOpenKeys } from '@/utils'
@@ -93,7 +93,7 @@ export default {
     const menuWrapClass = [
       'lu-menu',
       isSide && 'lu-menu__side',
-      `lu-menu__${menuTheme}`
+      `lu-menu__${ menuTheme }`
     ]
     
     const menuProps = {
@@ -149,6 +149,7 @@ export default {
   .lu-menu {
     &.lu-menu__side {
       border-top: 1px solid #3d4348;
+      
       &.lu-menu__light {
         border-top-color: rgba(61, 67, 72, 0.1);
       }
