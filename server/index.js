@@ -63,6 +63,22 @@ const menus = [
         title: '轨迹图'
       }
     ]
+  },
+  {
+    id: '3',
+    icon: 'stock',
+    path: '/d3',
+    name: 'd3',
+    title: 'D3',
+    children: [
+      {
+        id: '31',
+        icon: '',
+        path: '/d3/tutorials',
+        name: 'tutorials',
+        title: 'tutorials'
+      }
+    ]
   }
 ]
 

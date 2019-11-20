@@ -79,6 +79,25 @@ export const appRoutes = [
             component: () => import(/* webpackChunkName: "track" */ '@/views/dashboard/track')
           }
         ]
+      },
+      {
+        path: 'd3',
+        name: 'd3',
+        meta: {
+          title: 'D3',
+          icon: 'stock'
+        },
+        component: ViewLayout,
+        children: [
+          {
+            path: 'tutorials',
+            name: 'd3_tutorials',
+            meta: {
+              title: 'tutorials'
+            },
+            component: () => import(/* webpackChunkName: "tutorials" */ '@/views/d3/tutorials')
+          }
+        ]
       }
     ]
   }
