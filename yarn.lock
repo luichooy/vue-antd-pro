@@ -3586,10 +3586,34 @@ cyclist@~0.2.2:
   resolved "https://registry.npm.taobao.org/cyclist/download/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
 
-d3-array@1, d3-array@~1.2.0:
+d3-array@1, d3-array@^1.1.1, d3-array@^1.2.0, d3-array@~1.2.0:
   version "1.2.4"
   resolved "https://registry.npm.taobao.org/d3-array/download/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
   integrity sha1-Y1zk1e6nWfb2BYY9vPww7cc39x8=
+
+d3-axis@1:
+  version "1.0.12"
+  resolved "http://npm.idcvdian.com/d3-axis/download/d3-axis-1.0.12.tgz#cdf20ba210cfbb43795af33756886fb3638daac9"
+  integrity sha1-zfILohDPu0N5WvM3Vohvs2ONqsk=
+
+d3-brush@1:
+  version "1.1.4"
+  resolved "http://npm.idcvdian.com/d3-brush/download/d3-brush-1.1.4.tgz#a457887f558eb094b07d3db5c633facac6bd4cc4"
+  integrity sha1-pFeIf1WOsJSwfT21xjP6ysa9TMQ=
+  dependencies:
+    d3-dispatch "1"
+    d3-drag "1"
+    d3-interpolate "1"
+    d3-selection "1"
+    d3-transition "1"
+
+d3-chord@1:
+  version "1.0.6"
+  resolved "http://npm.idcvdian.com/d3-chord/download/d3-chord-1.0.6.tgz#309157e3f2db2c752f0280fedd35f2067ccbb15f"
+  integrity sha1-MJFX4/LbLHUvAoD+3TXyBnzLsV8=
+  dependencies:
+    d3-array "1"
+    d3-path "1"
 
 d3-collection@1:
   version "1.0.7"
@@ -3609,10 +3633,34 @@ d3-composite-projections@~1.2.0:
     d3-geo "^1.11"
     d3-path "^1.0.7"
 
+d3-contour@1:
+  version "1.3.2"
+  resolved "http://npm.idcvdian.com/d3-contour/download/d3-contour-1.3.2.tgz#652aacd500d2264cb3423cee10db69f6f59bead3"
+  integrity sha1-ZSqs1QDSJkyzQjzuENtp9vWb6tM=
+  dependencies:
+    d3-array "^1.1.1"
+
 d3-dispatch@1:
   version "1.0.5"
   resolved "https://registry.npm.taobao.org/d3-dispatch/download/d3-dispatch-1.0.5.tgz#e25c10a186517cd6c82dd19ea018f07e01e39015"
   integrity sha1-4lwQoYZRfNbILdGeoBjwfgHjkBU=
+
+d3-drag@1:
+  version "1.2.5"
+  resolved "http://npm.idcvdian.com/d3-drag/download/d3-drag-1.2.5.tgz#2537f451acd39d31406677b7dc77c82f7d988f70"
+  integrity sha1-JTf0UazTnTFAZne33HfIL32Yj3A=
+  dependencies:
+    d3-dispatch "1"
+    d3-selection "1"
+
+d3-dsv@1:
+  version "1.2.0"
+  resolved "http://npm.idcvdian.com/d3-dsv/download/d3-dsv-1.2.0.tgz#9d5f75c3a5f8abd611f74d3f5847b0d4338b885c"
+  integrity sha1-nV91w6X4q9YR900/WEew1DOLiFw=
+  dependencies:
+    commander "2"
+    iconv-lite "0.4"
+    rw "1"
 
 d3-dsv@~1.0.5:
   version "1.0.10"
@@ -3628,6 +3676,28 @@ d3-ease@1, d3-ease@~1.0.3:
   resolved "https://registry.npm.taobao.org/d3-ease/download/d3-ease-1.0.5.tgz#8ce59276d81241b1b72042d6af2d40e76d936ffb"
   integrity sha1-jOWSdtgSQbG3IELWry1A522Tb/s=
 
+d3-fetch@1:
+  version "1.1.2"
+  resolved "http://npm.idcvdian.com/d3-fetch/download/d3-fetch-1.1.2.tgz#957c8fbc6d4480599ba191b1b2518bf86b3e1be2"
+  integrity sha1-lXyPvG1EgFmboZGxslGL+Gs+G+I=
+  dependencies:
+    d3-dsv "1"
+
+d3-force@1:
+  version "1.2.1"
+  resolved "http://npm.idcvdian.com/d3-force/download/d3-force-1.2.1.tgz#fd29a5d1ff181c9e7f0669e4bd72bdb0e914ec0b"
+  integrity sha1-/Sml0f8YHJ5/BmnkvXK9sOkU7As=
+  dependencies:
+    d3-collection "1"
+    d3-dispatch "1"
+    d3-quadtree "1"
+    d3-timer "1"
+
+d3-format@1:
+  version "1.4.2"
+  resolved "http://npm.idcvdian.com/d3-format/download/d3-format-1.4.2.tgz#2a8c0ebf500f315981c2110eaaf70b82f472cb2b"
+  integrity sha1-KowOv1APMVmBwhEOqvcLgvRyyys=
+
 d3-format@^1.3.0:
   version "1.3.2"
   resolved "https://registry.npm.taobao.org/d3-format/download/d3-format-1.3.2.tgz#6a96b5e31bcb98122a30863f7d92365c00603562"
@@ -3641,6 +3711,13 @@ d3-geo-projection@~2.1.2:
     commander "2"
     d3-array "1"
     d3-geo "^1.1.0"
+
+d3-geo@1:
+  version "1.11.9"
+  resolved "http://npm.idcvdian.com/d3-geo/download/d3-geo-1.11.9.tgz#77eaed14ba62fc2c0aef55cd2943849c866f7ae6"
+  integrity sha1-d+rtFLpi/CwK71XNKUOEnIZveuY=
+  dependencies:
+    d3-array "1"
 
 d3-geo@^1.1.0, d3-geo@^1.11:
   version "1.11.6"
@@ -3662,6 +3739,11 @@ d3-hexjson@~1.0.1:
   integrity sha1-aiMRHoNZ8eIU9dCvo3nAKytn3ws=
   dependencies:
     d3-array "1"
+
+d3-hierarchy@1:
+  version "1.1.9"
+  resolved "http://npm.idcvdian.com/d3-hierarchy/download/d3-hierarchy-1.1.9.tgz#2f6bee24caaea43f8dc37545fa01628559647a83"
+  integrity sha1-L2vuJMqupD+Nw3VF+gFihVlkeoM=
 
 d3-hierarchy@~1.1.5:
   version "1.1.8"
@@ -3687,6 +3769,21 @@ d3-path@1, d3-path@^1.0.7:
   resolved "https://registry.npm.taobao.org/d3-path/download/d3-path-1.0.7.tgz#8de7cd693a75ac0b5480d3abaccd94793e58aae8"
   integrity sha1-jefNaTp1rAtUgNOrrM2UeT5Yqug=
 
+d3-polygon@1:
+  version "1.0.6"
+  resolved "http://npm.idcvdian.com/d3-polygon/download/d3-polygon-1.0.6.tgz#0bf8cb8180a6dc107f518ddf7975e12abbfbd38e"
+  integrity sha1-C/jLgYCm3BB/UY3feXXhKrv7044=
+
+d3-quadtree@1:
+  version "1.0.7"
+  resolved "http://npm.idcvdian.com/d3-quadtree/download/d3-quadtree-1.0.7.tgz#ca8b84df7bb53763fe3c2f24bd435137f4e53135"
+  integrity sha1-youE33u1N2P+PC8kvUNRN/TlMTU=
+
+d3-random@1:
+  version "1.1.2"
+  resolved "http://npm.idcvdian.com/d3-random/download/d3-random-1.1.2.tgz#2833be7c124360bf9e2d3fd4f33847cfe6cab291"
+  integrity sha1-KDO+fBJDYL+eLT/U8zhHz+bKspE=
+
 d3-sankey@~0.7.1:
   version "0.7.1"
   resolved "https://registry.npm.taobao.org/d3-sankey/download/d3-sankey-0.7.1.tgz#d229832268fc69a7fec84803e96c2256a614c521"
@@ -3696,10 +3793,42 @@ d3-sankey@~0.7.1:
     d3-collection "1"
     d3-shape "^1.2.0"
 
+d3-scale-chromatic@1:
+  version "1.5.0"
+  resolved "http://npm.idcvdian.com/d3-scale-chromatic/download/d3-scale-chromatic-1.5.0.tgz#54e333fc78212f439b14641fb55801dd81135a98"
+  integrity sha1-VOMz/HghL0ObFGQftVgB3YETWpg=
+  dependencies:
+    d3-color "1"
+    d3-interpolate "1"
+
+d3-scale@2:
+  version "2.2.2"
+  resolved "http://npm.idcvdian.com/d3-scale/download/d3-scale-2.2.2.tgz#4e880e0b2745acaaddd3ede26a9e908a9e17b81f"
+  integrity sha1-TogOCydFrKrd0+3iap6Qip4XuB8=
+  dependencies:
+    d3-array "^1.2.0"
+    d3-collection "1"
+    d3-format "1"
+    d3-interpolate "1"
+    d3-time "1"
+    d3-time-format "2"
+
+d3-selection@1:
+  version "1.4.1"
+  resolved "http://npm.idcvdian.com/d3-selection/download/d3-selection-1.4.1.tgz#98eedbbe085fbda5bafa2f9e3f3a2f4d7d622a98"
+  integrity sha1-mO7bvghfvaW6+i+ePzovTX1iKpg=
+
 d3-selection@^1.0.2, d3-selection@^1.1.0:
   version "1.4.0"
   resolved "https://registry.npm.taobao.org/d3-selection/download/d3-selection-1.4.0.tgz#ab9ac1e664cf967ebf1b479cc07e28ce9908c474"
   integrity sha1-q5rB5mTPln6/G0ecwH4ozpkIxHQ=
+
+d3-shape@1:
+  version "1.3.7"
+  resolved "http://npm.idcvdian.com/d3-shape/download/d3-shape-1.3.7.tgz#df63801be07bc986bc54f63789b4fe502992b5d7"
+  integrity sha1-32OAG+B7yYa8VPY3ibT+UCmStdc=
+  dependencies:
+    d3-path "1"
 
 d3-shape@^1.2.0:
   version "1.3.5"
@@ -3708,10 +3837,34 @@ d3-shape@^1.2.0:
   dependencies:
     d3-path "1"
 
+d3-time-format@2:
+  version "2.2.2"
+  resolved "http://npm.idcvdian.com/d3-time-format/download/d3-time-format-2.2.2.tgz#187597ffc6a0f37cb36bb7a1d7167cdc887ecda0"
+  integrity sha1-GHWX/8ag83yza7eh1xZ83Ih+zaA=
+  dependencies:
+    d3-time "1"
+
+d3-time@1:
+  version "1.1.0"
+  resolved "http://npm.idcvdian.com/d3-time/download/d3-time-1.1.0.tgz#b1e19d307dae9c900b7e5b25ffc5dcc249a8a0f1"
+  integrity sha1-seGdMH2unJALflsl/8XcwkmooPE=
+
 d3-timer@1, d3-timer@~1.0.6:
   version "1.0.9"
   resolved "https://registry.npm.taobao.org/d3-timer/download/d3-timer-1.0.9.tgz#f7bb8c0d597d792ff7131e1c24a36dd471a471ba"
   integrity sha1-97uMDVl9eS/3Ex4cJKNt1HGkcbo=
+
+d3-transition@1:
+  version "1.3.2"
+  resolved "http://npm.idcvdian.com/d3-transition/download/d3-transition-1.3.2.tgz#a98ef2151be8d8600543434c1ca80140ae23b398"
+  integrity sha1-qY7yFRvo2GAFQ0NMHKgBQK4js5g=
+  dependencies:
+    d3-color "1"
+    d3-dispatch "1"
+    d3-ease "1"
+    d3-interpolate "1"
+    d3-selection "^1.1.0"
+    d3-timer "1"
 
 d3-transition@^1.0.1:
   version "1.2.0"
@@ -3725,10 +3878,58 @@ d3-transition@^1.0.1:
     d3-selection "^1.1.0"
     d3-timer "1"
 
-d3-voronoi@~1.1.2:
+d3-voronoi@1, d3-voronoi@~1.1.2:
   version "1.1.4"
   resolved "https://registry.npm.taobao.org/d3-voronoi/download/d3-voronoi-1.1.4.tgz#dd3c78d7653d2bb359284ae478645d95944c8297"
   integrity sha1-3Tx412U9K7NZKErkeGRdlZRMgpc=
+
+d3-zoom@1:
+  version "1.8.3"
+  resolved "http://npm.idcvdian.com/d3-zoom/download/d3-zoom-1.8.3.tgz#b6a3dbe738c7763121cd05b8a7795ffe17f4fc0a"
+  integrity sha1-tqPb5zjHdjEhzQW4p3lf/hf0/Ao=
+  dependencies:
+    d3-dispatch "1"
+    d3-drag "1"
+    d3-interpolate "1"
+    d3-selection "1"
+    d3-transition "1"
+
+d3@^5.14.1:
+  version "5.14.1"
+  resolved "http://npm.idcvdian.com/d3/download/d3-5.14.1.tgz#42e2a5728f8043ccbe67a82d5b09365c4db768b4"
+  integrity sha1-QuKlco+AQ8y+Z6gtWwk2XE23aLQ=
+  dependencies:
+    d3-array "1"
+    d3-axis "1"
+    d3-brush "1"
+    d3-chord "1"
+    d3-collection "1"
+    d3-color "1"
+    d3-contour "1"
+    d3-dispatch "1"
+    d3-drag "1"
+    d3-dsv "1"
+    d3-ease "1"
+    d3-fetch "1"
+    d3-force "1"
+    d3-format "1"
+    d3-geo "1"
+    d3-hierarchy "1"
+    d3-interpolate "1"
+    d3-path "1"
+    d3-polygon "1"
+    d3-quadtree "1"
+    d3-random "1"
+    d3-scale "2"
+    d3-scale-chromatic "1"
+    d3-selection "1"
+    d3-shape "1"
+    d3-time "1"
+    d3-time-format "2"
+    d3-timer "1"
+    d3-transition "1"
+    d3-voronoi "1"
+    d3-zoom "1"
 
 dagre@~0.8.2:
   version "0.8.4"
