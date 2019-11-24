@@ -115,10 +115,10 @@ module.exports = () => {
       message: 'success'
     }
   }
-  
+
   for (let i = 0; i < 54; i++) {
     data.users.push(casual.user(casual.random_element(roleMap)))
   }
-  
+
   return data
 }
