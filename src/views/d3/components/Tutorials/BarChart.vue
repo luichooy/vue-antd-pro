@@ -76,40 +76,47 @@ export default {
       { name: 'Kwon', value: 42 }
     ]
 
-    const width = 960
-    const height = 500
+    const margin = { top: 20, right: 30, bottom: 30, left: 40 }
 
-    const chart3 = this.$d3.select('.part3')
-      .attr('width', width)
-      .attr('height', height)
-
-    const y = this.$d3.scaleLinear(
-      [this.$d3.max(data, d => d.value), 0],
-      [0, height]
-    )
-
-    const barWidth = width / data.length
+    const width = 960 - margin.left - margin.right
+    const height = 500 - margin.top - margin.bottom
 
     {
-      const bar = chart3.selectAll('g')
+      const x = this.$d3.scaleBand(
+        data.map(d => d.name),
+        [0, width]
+      ).paddingInner(0.3).paddingOuter(0.1)
+
+      const y = this.$d3.scaleLinear(
+        [0, this.$d3.max(data, d => d.value)],
+        [height, 0]
+      )
+
+      const xAxis = this.$d3.axisBottom(x)
+      const yAxis = this.$d3.axisLeft(y)
+
+      const chart3 = this.$d3.select('.part3')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${ margin.left },${ margin.top })`)
+
+      chart3.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', `translate(0, ${ height })`)
+        .call(xAxis)
+
+      chart3.append('g').attr('class', 'y axis').call(yAxis)
+
+      chart3.selectAll('.bar')
         .data(data)
         .enter()
-        .append('g')
-        .attr(
-          'transform',
-          (d, i) => `translate(${ barWidth * i }, 0)`
-        )
-
-      bar.append('rect')
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d.name))
         .attr('y', d => y(d.value))
-        .attr('width', barWidth - 1)
         .attr('height', d => height - y(d.value))
-
-      bar.append('text')
-        .attr('x', barWidth / 2)
-        .attr('y', d => y(d.value) + 3)
-        .attr('dy', '0.75em')
-        .text(d => d.value)
+        .attr('width', x.bandwidth())
     }
   }
 }
@@ -142,14 +149,23 @@ export default {
   .part3 {
     display: block;
     
-    rect {
+    .bar {
       fill: steelblue;
     }
     
-    text {
-      fill: white;
+    .axis text {
       font: 10px sans-serif;
-      text-anchor: middle;
+    }
+    
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+    
+    .x.axis path {
+      display: none;
     }
   }
 </style>
