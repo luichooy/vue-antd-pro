@@ -40,48 +40,52 @@ export default {
       .style('height', this.barSize.height - 1 + 'px')
     
     /* part2 svg */
-    const x = this.$d3.scaleLinear(
-      [0, this.$d3.max(this.data)],
-      [0, this.barSize.width]
-    )
-
-    const chart2 = this.$d3.select('.part2')
-      .attr('width', this.barSize.width)
-      .attr('height', this.barSize.height * this.data.length)
-
-    const bar = chart2.selectAll('g')
-      .data(this.data)
-      .enter()
-      .append('g')
-      .attr(
-        'transform',
-        (d, i) => `translate(0, ${ this.barSize.height * i })`
+    {
+      const x = this.$d3.scaleLinear(
+        [0, this.$d3.max(this.data)],
+        [0, this.barSize.width]
       )
 
-    bar.append('rect').attr('width', x).attr('height', this.barSize.height - 1)
+      const chart2 = this.$d3.select('.part2')
+        .attr('width', this.barSize.width)
+        .attr('height', this.barSize.height * this.data.length)
 
-    bar.append('text')
-      .attr('x', d => x(d) - 3)
-      .attr('y', this.barSize.height / 2)
-      .attr('dy', '.35em')
-      .text(d => d)
+      const bar = chart2.selectAll('g')
+        .data(this.data)
+        .enter()
+        .append('g')
+        .attr(
+          'transform',
+          (d, i) => `translate(0, ${ this.barSize.height * i })`
+        )
+
+      bar.append('rect')
+        .attr('width', x)
+        .attr('height', this.barSize.height - 1)
+
+      bar.append('text')
+        .attr('x', d => x(d) - 3)
+        .attr('y', this.barSize.height / 2)
+        .attr('dy', '.35em')
+        .text(d => d)
+    }
     
     /* part3 */
-    const data = [
-      { name: 'Locke', value: 4 },
-      { name: 'Reyes', value: 8 },
-      { name: 'Ford', value: 15 },
-      { name: 'Jarrah', value: 16 },
-      { name: 'Shephard', value: 23 },
-      { name: 'Kwon', value: 42 }
-    ]
-
-    const margin = { top: 20, right: 30, bottom: 30, left: 40 }
-
-    const width = 960 - margin.left - margin.right
-    const height = 500 - margin.top - margin.bottom
-
     {
+      const data = [
+        { name: 'Locke', value: 4 },
+        { name: 'Reyes', value: 8 },
+        { name: 'Ford', value: 15 },
+        { name: 'Jarrah', value: 16 },
+        { name: 'Shephard', value: 23 },
+        { name: 'Kwon', value: 42 }
+      ]
+
+      const margin = { top: 20, right: 30, bottom: 30, left: 40 }
+
+      const width = 960 - margin.left - margin.right
+      const height = 500 - margin.top - margin.bottom
+
       const x = this.$d3.scaleBand(
         data.map(d => d.name),
         [0, width]
@@ -106,7 +110,16 @@ export default {
         .attr('transform', `translate(0, ${ height })`)
         .call(xAxis)
 
-      chart3.append('g').attr('class', 'y axis').call(yAxis)
+      chart3.append('g')
+        .attr('class', 'y axis')
+        .call(yAxis)
+        .append('text')
+        .attr('class', 'label')
+        .attr('y', 6)
+        .attr('dy', '0.71em')
+        .attr('transform', 'rotate(-90)')
+        .style('text-anchor', 'end')
+        .text('Number')
 
       chart3.selectAll('.bar')
         .data(data)
@@ -164,8 +177,12 @@ export default {
       shape-rendering: crispEdges;
     }
     
-    .x.axis path {
-      display: none;
+    .y.axis .label {
+      fill: red;
     }
+    
+    /* .x.axis path {
+      display: none;
+    } */
   }
 </style>
