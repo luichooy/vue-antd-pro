@@ -1,5 +1,5 @@
 <template>
-  <div class="tutorials">
+  <div class="bar">
     <bar-chart />
     
     <transition style="margin: 16px 0;" />

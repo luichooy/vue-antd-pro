@@ -74,9 +74,9 @@ const menus = [
       {
         id: '31',
         icon: '',
-        path: '/d3/tutorials',
-        name: 'tutorials',
-        title: 'tutorials'
+        path: '/d3/bar',
+        name: 'bar',
+        title: 'bar'
       }
     ]
   }

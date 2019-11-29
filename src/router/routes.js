@@ -90,12 +90,12 @@ export const appRoutes = [
         component: ViewLayout,
         children: [
           {
-            path: 'tutorials',
-            name: 'd3_tutorials',
+            path: 'bar',
+            name: 'd3_bar',
             meta: {
-              title: 'tutorials'
+              title: 'bar'
             },
-            component: () => import(/* webpackChunkName: "tutorials" */ '@/views/d3/tutorials')
+            component: () => import(/* webpackChunkName: "tutorials" */ '@/views/d3/bar')
           }
         ]
       }
