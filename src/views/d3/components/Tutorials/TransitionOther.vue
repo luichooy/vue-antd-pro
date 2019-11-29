@@ -49,7 +49,7 @@ export default {
     const x = this.$d3.scaleBand(
       data.map(d => d.name),
       [0, height]
-    ).paddingInner(0.1).paddingOuter(0.1)
+    ).paddingInner(0.1).paddingOuter(0.2)
 
     const y = this.$d3.scaleLinear(
       [0, this.$d3.max(data, d => d.gdp)],
