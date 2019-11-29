@@ -40,7 +40,7 @@ export default {
       { name: '西藏', gdp: 1400 }
     ]
 
-    const margin = { top: 20, right: 30, bottom: 30, left: 50 }
+    const margin = { top: 50, right: 30, bottom: 10, left: 50 }
     const containerWidth = document.querySelector('.container-other').clientWidth
     console.log(containerWidth)
     const width = containerWidth - margin.left - margin.right
@@ -49,7 +49,7 @@ export default {
     const x = this.$d3.scaleBand(
       data.map(d => d.name),
       [0, height]
-    ).paddingInner(0.1).paddingOuter(0.2)
+    ).paddingInner(0.1).paddingOuter(0.3)
 
     const y = this.$d3.scaleLinear(
       [0, this.$d3.max(data, d => d.gdp)],
@@ -59,18 +59,73 @@ export default {
     const xAxis = this.$d3.axisLeft(x)
     const yAxis = this.$d3.axisTop(y)
 
-    const chart = this.$d3.select('.chart-other')
+    const svg = this.$d3.select('.chart-other')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
-      .append('g')
+
+    svg.append('text')
+      .attr('x', width / 2)
+      .attr('y', 0)
+      .attr('dy', 16)
+      .style('text-anchor', 'middle')
+      .text('2018年中国各省（直辖市）GDP总量')
+
+    const chart = svg.append('g')
       .attr('transform', `translate(${ margin.left },${ margin.top })`)
 
     chart.append('g').attr('class', 'x axis').call(xAxis)
     chart.append('g').attr('class', 'y axis').call(yAxis)
+
+    const bar = chart.selectAll('.bar')
+      .data(data)
+      .enter()
+      .append('g')
+      .attr('class', 'bar')
+      .attr('transform', d => `translate(0, ${ x(d.name) })`)
+
+    bar.append('rect')
+      .attr('height', x.bandwidth())
+      .transition()
+      .delay((d, i) => i * 50)
+      .duration(500)
+      .ease(this.$d3.easeCubicOut)
+      .attr('width', d => y(d.gdp))
+
+    bar.append('text')
+      .style('fill', '#fff')
+      .attr('y', x.bandwidth() / 2)
+      .attr('dy', 3)
+      .text(d => d.gdp)
+      .transition()
+      .delay((d, i) => i * 50)
+      .duration(500)
+      .ease(this.$d3.easeCubicOut)
+      .attr('x', d => y(d.gdp) - 5)
   }
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+  .container-other {
+    width: 100%;
+  }
+  
+  .chart-other {
+    .bar {
+      fill: steelblue;
+      font-size: 10px;
+      text-anchor: end;
+    }
+    
+    .axis text {
+      font: 10px sans-serif;
+    }
+    
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+  }
 </style>
