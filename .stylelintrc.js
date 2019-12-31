@@ -6,6 +6,8 @@ module.exports = {
   rules: {
     'font-family-no-missing-generic-family-keyword': null,
     'no-empty-source': null,
-    'no-eol-whitespace': null
+    'no-eol-whitespace': null,
+    // 解决 vue 深度选择器  ::v-deep
+    'selector-pseudo-element-no-unknown': null
   }
 }
