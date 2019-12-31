@@ -77,6 +77,13 @@ const menus = [
         path: '/d3/bar',
         name: 'bar',
         title: 'bar'
+      },
+      {
+        id: '32',
+        icon: '',
+        path: '/d3/line',
+        name: 'line',
+        title: 'line'
       }
     ]
   }

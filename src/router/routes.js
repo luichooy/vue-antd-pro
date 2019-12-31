@@ -96,6 +96,14 @@ export const appRoutes = [
               title: 'bar'
             },
             component: () => import(/* webpackChunkName: "tutorials" */ '@/views/d3/bar')
+          },
+          {
+            path: 'line',
+            name: 'd3_line',
+            meta: {
+              title: 'line'
+            },
+            component: () => import(/* webpackChunkName: "tutorials" */ '@/views/d3/line')
           }
         ]
       }

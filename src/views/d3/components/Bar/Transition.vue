@@ -105,12 +105,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .container {
     width: 100%;
   }
   
-  .chart {
+  .chart::v-deep {
     .bar {
       fill: steelblue;
     }

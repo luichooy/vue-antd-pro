@@ -135,8 +135,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  .part1 div {
+<style lang="scss" scoped>
+  .part1::v-deep div {
     margin-bottom: 1px;
     padding-right: 3px;
     text-align: right;
@@ -145,7 +145,7 @@ export default {
     background: steelblue;
   }
   
-  .part2 {
+  .part2::v-deep {
     display: block;
     
     rect {
@@ -159,7 +159,7 @@ export default {
     }
   }
   
-  .part3 {
+  .part3::v-deep {
     display: block;
     
     .bar {

@@ -105,12 +105,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .container-other {
     width: 100%;
   }
   
-  .chart-other {
+  .chart-other::v-deep {
     .bar {
       fill: steelblue;
       font-size: 10px;
@@ -128,4 +128,5 @@ export default {
       shape-rendering: crispEdges;
     }
   }
+
 </style>

@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import BarChart from './components/Tutorials/BarChart'
-import Transition from './components/Tutorials/Transition'
-import TransitionOther from './components/Tutorials/TransitionOther'
+import BarChart from './components/Bar/BarChart'
+import Transition from './components/Bar/Transition'
+import TransitionOther from './components/Bar/TransitionOther'
 
 export default {
   components: {
