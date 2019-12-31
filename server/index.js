@@ -86,6 +86,29 @@ const menus = [
         title: 'line'
       }
     ]
+  },
+  {
+    id: '4',
+    icon: 'stock',
+    path: '/g2',
+    name: 'g2',
+    title: 'g2',
+    children: [
+      {
+        id: '41',
+        icon: '',
+        path: '/g2/bar',
+        name: 'bar',
+        title: 'bar'
+      },
+      {
+        id: '42',
+        icon: '',
+        path: '/g2/line',
+        name: 'line',
+        title: 'line'
+      }
+    ]
   }
 ]
 

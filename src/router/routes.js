@@ -106,6 +106,33 @@ export const appRoutes = [
             component: () => import(/* webpackChunkName: "tutorials" */ '@/views/d3/line')
           }
         ]
+      },
+      {
+        path: 'g2',
+        name: 'g2',
+        meta: {
+          title: 'g2',
+          icon: 'stock'
+        },
+        component: ViewLayout,
+        children: [
+          {
+            path: 'bar',
+            name: 'g2_bar',
+            meta: {
+              title: 'bar'
+            },
+            component: () => import(/* webpackChunkName: "tutorials" */ '@/views/g2/bar')
+          },
+          {
+            path: 'line',
+            name: 'g2_line',
+            meta: {
+              title: 'line'
+            },
+            component: () => import(/* webpackChunkName: "tutorials" */ '@/views/g2/line')
+          }
+        ]
       }
     ]
   }
